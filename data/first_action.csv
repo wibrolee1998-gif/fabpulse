@@ -1,0 +1,18 @@
+part_id,part_name,supplier,period,period_index,gross_requirement,scheduled_receipt,safety_stock,projected_on_hand,net_requirement,order_qty,unit_cost,order_value,lead_time_weeks,planned_release_period_index,planned_release_period,moq,is_past_due,months_overdue
+PRT-TMP,Turbo Molecular Pump,VacuTech Global,2026-09,0,20.6,1,19,19.0,18.6,19,9800,186200,14,-4.0,즉시발주(Past Due),2,True,4.0
+PRT-RFA,RF Power Amplifier Module,RF Dynamics,2026-09,0,41.2,1,31,31.0,41.2,42,11200,470400,12,-3.0,즉시발주(Past Due),2,True,3.0
+PRT-CCU,Chiller Compressor Unit,ThermoChill Systems,2026-10,1,19.9,0,12,12.0,17.5,18,4300,77400,9,-2.0,즉시발주(Past Due),2,True,2.0
+PRT-DVP,Dry Vacuum Pump,VacuTech Global,2026-10,1,19.9,0,14,14.0,16.5,17,6100,103700,10,-2.0,즉시발주(Past Due),2,True,2.0
+PRT-ESC,Ceramic Electrostatic Chuck,CeramTech Korea,2026-10,1,19.9,0,12,12.0,15.5,16,8200,131200,10,-2.0,즉시발주(Past Due),2,True,2.0
+PRT-EEF,Robot Arm End Effector,PrecisionMotion,2026-10,1,39.8,0,20,20.0,35.0,35,2200,77000,5,-1.0,즉시발주(Past Due),4,True,1.0
+PRT-GVM,Gas Valve Manifold,FlowMaster Inc.,2026-10,1,39.8,0,19,19.0,36.0,36,1450,52200,6,-1.0,즉시발주(Past Due),4,True,1.0
+PRT-LNR,Quartz Chamber Liner,SiQuartz Industries,2026-10,1,19.9,0,9,9.0,17.5,18,3100,55800,6,-1.0,즉시발주(Past Due),4,True,1.0
+PRT-MFC,Mass Flow Controller,FlowMaster Inc.,2026-10,1,119.4,0,54,54.0,107.0,107,2650,283550,7,-1.0,즉시발주(Past Due),6,True,1.0
+PRT-RFM,RF Matching Network,RF Dynamics,2026-10,1,39.8,0,23,23.0,34.0,34,6400,217600,8,-1.0,즉시발주(Past Due),2,True,1.0
+PRT-RFS,RF Sensor/Coupler,SensorTek,2026-10,1,79.6,0,33,33.0,73.0,73,780,56940,5,-1.0,즉시발주(Past Due),5,True,1.0
+PRT-SVM,Servo Motor Actuator,PrecisionMotion,2026-10,1,59.7,0,30,30.0,55.5,56,1850,103600,6,-1.0,즉시발주(Past Due),6,True,1.0
+PRT-CFS,Coolant Flow Sensor,ThermoChill Systems,2026-10,1,39.8,0,12,12.0,35.0,35,290,10150,3,0.0,2026-09,10,False,0.0
+PRT-FRS,Focus Ring Set,SiQuartz Industries,2026-10,1,39.8,0,25,25.0,36.0,36,950,34200,4,0.0,2026-09,10,False,0.0
+PRT-PTR,Pressure Transducer,SensorTek,2026-10,1,39.8,0,13,13.0,36.0,36,520,18720,4,0.0,2026-09,8,False,0.0
+PRT-VPW,Viewport Window,OptiGlass Co.,2026-10,1,39.8,0,11,11.0,36.0,36,410,14760,3,0.0,2026-09,10,False,0.0
+PRT-WPS,Wafer Position Sensor,SensorTek,2026-10,1,79.6,0,25,25.0,73.0,73,340,24820,3,0.0,2026-09,10,False,0.0

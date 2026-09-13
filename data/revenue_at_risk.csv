@@ -1,0 +1,18 @@
+part_id,part_name,is_past_due,months_overdue,at_risk_window_months,at_risk_top_units,revenue_at_risk,margin_at_risk
+PRT-TMP,Turbo Molecular Pump,True,4,4,83.5,292250000.0,140280000.0
+PRT-RFA,RF Power Amplifier Module,True,3,3,60.9,213150000.0,102312000.0
+PRT-CCU,Chiller Compressor Unit,True,2,2,40.5,141750000.0,68040000.0
+PRT-DVP,Dry Vacuum Pump,True,2,2,40.5,141750000.0,68040000.0
+PRT-ESC,Ceramic Electrostatic Chuck,True,2,2,40.5,141750000.0,68040000.0
+PRT-EEF,Robot Arm End Effector,True,1,1,20.6,72100000.0,34608000.0
+PRT-GVM,Gas Valve Manifold,True,1,1,20.6,72100000.0,34608000.0
+PRT-LNR,Quartz Chamber Liner,True,1,1,20.6,72100000.0,34608000.0
+PRT-MFC,Mass Flow Controller,True,1,1,20.6,72100000.0,34608000.0
+PRT-RFM,RF Matching Network,True,1,1,20.6,72100000.0,34608000.0
+PRT-RFS,RF Sensor/Coupler,True,1,1,20.6,72100000.0,34608000.0
+PRT-SVM,Servo Motor Actuator,True,1,1,20.6,72100000.0,34608000.0
+PRT-CFS,Coolant Flow Sensor,False,0,0,0.0,0.0,0.0
+PRT-FRS,Focus Ring Set,False,0,0,0.0,0.0,0.0
+PRT-PTR,Pressure Transducer,False,0,0,0.0,0.0,0.0
+PRT-VPW,Viewport Window,False,0,0,0.0,0.0,0.0
+PRT-WPS,Wafer Position Sensor,False,0,0,0.0,0.0,0.0

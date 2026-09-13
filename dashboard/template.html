@@ -1,0 +1,1334 @@
+<title>FabPulse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --surface-raised: #202020;
+    --ink: #ffffff;
+    --ink-secondary: #c3c2b7;
+    --ink-muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255,255,255,0.10);
+    --accent: #3987e5;
+    --accent-soft: rgba(57,135,229,0.14);
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --good: #0ca30c;
+    --warning: #fab219;
+    --serious: #ec835a;
+    --critical: #d03b3b;
+    --seq-100: #104281;
+    --seq-300: #184f95;
+    --seq-500: #256abf;
+    --seq-700: #3987e5;
+    --seq-900: #86b6ef;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --surface-raised: #ffffff;
+    --ink: #0b0b0b;
+    --ink-secondary: #52514e;
+    --ink-muted: #898781;
+    --grid: #e1e0d9;
+    --axis: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --accent: #2a78d6;
+    --accent-soft: rgba(42,120,214,0.10);
+    --series-2: #eb6834;
+    --series-3: #1baf7a;
+    --good: #0ca30c;
+    --warning: #fab219;
+    --serious: #ec835a;
+    --critical: #d03b3b;
+    --seq-100: #cde2fb;
+    --seq-300: #9ec5f4;
+    --seq-500: #5598e7;
+    --seq-700: #2a78d6;
+    --seq-900: #104281;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { background: var(--page); }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 28px 24px 80px;
+  }
+
+  /* ---------- header ---------- */
+  .topbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .brand-row { display: flex; align-items: center; gap: 10px; }
+  .brand-mark {
+    width: 30px; height: 30px; border-radius: 7px;
+    background: linear-gradient(135deg, var(--accent), var(--seq-100));
+    display: flex; align-items: center; justify-content: center;
+    flex: none;
+  }
+  .brand-mark svg { width: 16px; height: 16px; }
+  .brand-name { font-size: 15px; font-weight: 600; letter-spacing: 0.01em; }
+  .brand-sub { color: var(--ink-muted); font-size: 12.5px; margin-top: 2px; }
+  h1 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 14px 0 6px;
+    text-wrap: balance;
+  }
+  .lede {
+    color: var(--ink-secondary);
+    font-size: 14.5px;
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .model-badge {
+    flex: none;
+    text-align: right;
+  }
+  .model-badge .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 5px 12px 5px 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .model-badge .tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .model-badge .caption { color: var(--ink-muted); font-size: 11.5px; margin-top: 6px; }
+  .theme-btn {
+    margin-top: 10px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    color: var(--ink-secondary);
+    border-radius: 7px;
+    padding: 5px 10px;
+    font-size: 11.5px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .theme-btn:hover { color: var(--ink); border-color: var(--accent); }
+
+  /* ---------- kpi strip ---------- */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .kpi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 16px 14px;
+    position: relative;
+  }
+  .kpi .label { color: var(--ink-muted); font-size: 12px; margin-bottom: 8px; }
+  .kpi .value { font-size: 25px; font-weight: 600; letter-spacing: -0.01em; }
+  .kpi .unit { font-size: 13px; color: var(--ink-secondary); font-weight: 500; margin-left: 2px; }
+  .kpi .delta { margin-top: 7px; font-size: 12px; display: flex; align-items: center; gap: 5px; }
+  .kpi .delta.good { color: var(--good); }
+  .kpi .delta.critical { color: var(--critical); }
+  .kpi .delta.neutral { color: var(--ink-muted); }
+
+  /* ---------- panels ---------- */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px 22px;
+    margin-bottom: 16px;
+  }
+  .panel-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 4px;
+  }
+  .panel-title { font-size: 15px; font-weight: 600; }
+  .panel-note { color: var(--ink-muted); font-size: 12px; }
+  .panel-desc { color: var(--ink-secondary); font-size: 12.5px; margin: 4px 0 16px; line-height: 1.55; max-width: 72ch; }
+
+  .row-2 {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 16px;
+  }
+
+  /* ---------- legend ---------- */
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-secondary); }
+  .legend-swatch { display: inline-block; width: 14px; height: 2px; border-radius: 2px; }
+  .legend-swatch.dashed { display: inline-block; background: none; border-top: 2px dashed var(--accent); width: 14px; height: 0; }
+  .legend-swatch.band { display: inline-block; width: 14px; height: 9px; border-radius: 2px; opacity: 0.35; }
+  .legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ---------- chart ---------- */
+  .chart-wrap { position: relative; }
+  svg.chart { width: 100%; height: auto; display: block; overflow: visible; }
+  .grid-line { stroke: var(--grid); stroke-width: 1; }
+  .axis-line { stroke: var(--axis); stroke-width: 1; }
+  .axis-label { fill: var(--ink-muted); font-size: 10.5px; font-family: "IBM Plex Mono", monospace; }
+  .crosshair { stroke: var(--ink-muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0; pointer-events: none; }
+  .hover-capture { fill: transparent; cursor: crosshair; }
+
+  .tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 9px 12px;
+    font-size: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 12px));
+    transition: opacity 0.08s ease;
+    z-index: 20;
+    white-space: nowrap;
+  }
+  .tooltip .t-head { color: var(--ink-muted); font-size: 11px; margin-bottom: 5px; font-family: "IBM Plex Mono", monospace; }
+  .tooltip .t-row { display: flex; align-items: center; gap: 7px; justify-content: space-between; }
+  .tooltip .t-row + .t-row { margin-top: 3px; }
+  .tooltip .t-key { display: flex; align-items: center; gap: 6px; color: var(--ink-secondary); }
+  .tooltip .t-swatch { width: 10px; height: 2px; border-radius: 2px; flex: none; }
+  .tooltip .t-val { font-weight: 600; font-family: "IBM Plex Mono", monospace; }
+
+  /* ---------- bom tree ---------- */
+  .bom-tree { display: flex; flex-direction: column; gap: 0; }
+  .bom-root {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent-soft); border: 1px solid var(--accent);
+    color: var(--accent); border-radius: 9px; padding: 8px 14px;
+    font-size: 13px; font-weight: 600; margin-bottom: 14px;
+  }
+  .bom-root .mono { color: var(--accent); opacity: 0.8; font-size: 11.5px; font-weight: 500; }
+  .bom-level1-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .bom-sub {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-raised);
+    overflow: hidden;
+  }
+  .bom-sub-head {
+    padding: 10px 12px 8px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .bom-sub-name { font-size: 12.5px; font-weight: 600; line-height: 1.3; }
+  .bom-sub-qty { font-size: 10.5px; color: var(--ink-muted); margin-top: 3px; font-family: "IBM Plex Mono", monospace; }
+  .bom-parts { padding: 8px 12px 10px; display: flex; flex-direction: column; gap: 6px; }
+  .bom-part { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; font-size: 11.5px; }
+  .bom-part-name { color: var(--ink-secondary); }
+  .bom-part-qty { color: var(--ink-muted); font-family: "IBM Plex Mono", monospace; font-size: 10.5px; flex: none; }
+
+  /* ---------- urgency queue ---------- */
+  .queue { display: flex; flex-direction: column; }
+  .queue-row {
+    display: grid;
+    grid-template-columns: 96px 1.6fr 0.9fr 0.7fr 0.9fr 1.1fr;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 4px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12.5px;
+  }
+  .queue-row:last-child { border-bottom: none; }
+  .queue-head { color: var(--ink-muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; padding-bottom: 8px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    border-radius: 100px; padding: 3px 9px 3px 7px;
+    font-size: 11px; font-weight: 600; white-space: nowrap;
+  }
+  .chip .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .chip.critical { background: rgba(208,59,59,0.14); color: var(--critical); }
+  .chip.critical .dot { background: var(--critical); }
+  .chip.warning { background: rgba(250,178,25,0.14); color: #c98500; }
+  .chip.warning .dot { background: var(--warning); }
+  .chip.good { background: rgba(12,163,12,0.12); color: var(--good); }
+  .chip.good .dot { background: var(--good); }
+  .q-part { font-weight: 600; }
+  .q-supplier { color: var(--ink-muted); font-size: 11px; margin-top: 1px; }
+  .q-num { font-family: "IBM Plex Mono", monospace; }
+  .q-release { color: var(--ink-secondary); }
+
+  /* ---------- heatmap ---------- */
+  .heatmap-scroll { overflow-x: auto; }
+  table.heat {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 760px;
+    font-size: 12px;
+  }
+  table.heat th, table.heat td { padding: 0; }
+  table.heat thead th {
+    text-align: left;
+    color: var(--ink-muted);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 0 8px 8px;
+    font-weight: 600;
+  }
+  table.heat thead th.month-col { text-align: center; font-family: "IBM Plex Mono", monospace; }
+  table.heat tbody th {
+    text-align: left;
+    padding: 6px 10px 6px 0;
+    white-space: nowrap;
+  }
+  .heat-part-name { font-weight: 600; font-size: 12px; }
+  .heat-part-id { color: var(--ink-muted); font-size: 10.5px; font-family: "IBM Plex Mono", monospace; }
+  td.heat-cell {
+    width: 78px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    border: 2px solid var(--surface);
+  }
+  .heat-fill {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: default;
+  }
+  .heat-scale { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 11px; color: var(--ink-muted); }
+  .heat-scale-ramp { display: flex; height: 10px; border-radius: 4px; overflow: hidden; width: 160px; }
+  .heat-scale-ramp span { flex: 1; }
+
+  .toggle-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--ink-secondary);
+    border-radius: 7px;
+    padding: 5px 11px;
+    font-size: 11.5px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---------- ECN simulator ---------- */
+  .eco-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .eco-tab {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    color: var(--ink-secondary);
+    border-radius: 9px;
+    padding: 8px 13px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .eco-tab .eco-tab-id { display: block; font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--ink-muted); margin-bottom: 2px; }
+  .eco-tab .eco-tab-part { font-weight: 600; color: var(--ink); }
+  .eco-tab:hover { border-color: var(--accent); }
+  .eco-tab.active { border-color: var(--accent); background: var(--accent-soft); }
+  .eco-tab.active .eco-tab-part { color: var(--accent); }
+
+  .eco-trigger {
+    display: flex; align-items: flex-start; gap: 9px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-size: 12.5px;
+    color: var(--ink-secondary);
+    margin-bottom: 14px;
+  }
+  .eco-trigger b { color: var(--ink); }
+
+  .eco-whereused {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    font-size: 12.5px; color: var(--ink-secondary); margin-bottom: 14px;
+  }
+  .eco-whereused .crumb { display: inline-flex; align-items: center; gap: 6px; }
+  .eco-whereused .crumb b { color: var(--ink); font-weight: 600; }
+  .eco-whereused .crumb-sep { color: var(--ink-muted); }
+  .eco-whereused .crumb-qty { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink-muted); }
+
+  .eco-baseline {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 11px 14px;
+    margin-bottom: 16px;
+  }
+  .eco-baseline .eco-baseline-label { font-size: 11.5px; color: var(--ink-muted); }
+  .eco-baseline .eco-baseline-val { font-size: 12.5px; margin-top: 2px; }
+
+  .eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .eco-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface-raised);
+    padding: 14px 15px 15px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .eco-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .eco-card-name { font-size: 12.5px; font-weight: 600; line-height: 1.4; }
+  .eco-card-stats { display: flex; gap: 14px; font-size: 12px; }
+  .eco-card-stat .k { color: var(--ink-muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .eco-card-stat .v { font-family: "IBM Plex Mono", monospace; font-weight: 600; margin-top: 2px; }
+  .eco-card-note { font-size: 11.5px; color: var(--ink-secondary); line-height: 1.5; }
+  .eco-card-impact { border-top: 1px dashed var(--border); padding-top: 10px; font-size: 12px; display: flex; flex-direction: column; gap: 5px; }
+  .eco-card-impact .impact-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .eco-card-impact .impact-key { color: var(--ink-muted); font-size: 11.5px; }
+  .eco-card-impact .impact-val { font-family: "IBM Plex Mono", monospace; font-weight: 600; }
+
+  @media (max-width: 860px) {
+    .eco-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- profit impact ---------- */
+  .assumption-note {
+    display: flex; align-items: flex-start; gap: 9px;
+    background: rgba(250,178,25,0.08);
+    border: 1px solid rgba(250,178,25,0.32);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--ink-secondary);
+    margin-bottom: 18px;
+  }
+  .assumption-note b { color: var(--ink); }
+
+  .profit-kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .profit-kpi {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px 13px;
+  }
+  .profit-kpi .label { color: var(--ink-muted); font-size: 11.5px; margin-bottom: 7px; }
+  .profit-kpi .value { font-size: 21px; font-weight: 600; letter-spacing: -0.01em; }
+  .profit-kpi .value.critical { color: var(--critical); }
+  .profit-kpi .value.good { color: var(--good); }
+  .profit-kpi .sub { margin-top: 6px; font-size: 11.5px; color: var(--ink-secondary); line-height: 1.4; }
+
+  .profit-subhead {
+    font-size: 11.5px; font-weight: 600; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 0.04em;
+    margin: 22px 0 10px;
+  }
+  .profit-subhead:first-of-type { margin-top: 0; }
+
+  .tradeoff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tradeoff-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface-raised);
+    padding: 14px 15px 15px;
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .tradeoff-card.baseline { border-style: dashed; }
+  .tradeoff-card.best { border-color: var(--good); background: rgba(12,163,12,0.06); }
+  .tradeoff-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .tradeoff-card-level { font-size: 14px; font-weight: 600; }
+  .tradeoff-card-z { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--ink-muted); }
+  .tradeoff-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; }
+  .tradeoff-row .k { color: var(--ink-muted); font-size: 11.5px; }
+  .tradeoff-row .v { font-family: "IBM Plex Mono", monospace; font-weight: 600; }
+  .tradeoff-net {
+    border-top: 1px dashed var(--border); padding-top: 10px; margin-top: 2px;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .tradeoff-net .k { color: var(--ink-muted); font-size: 11.5px; }
+  .tradeoff-net .v { font-family: "IBM Plex Mono", monospace; font-weight: 700; font-size: 14.5px; }
+  .tradeoff-net .v.good { color: var(--good); }
+  .tradeoff-net .v.critical { color: var(--critical); }
+
+  @media (max-width: 860px) {
+    .profit-kpi-row { grid-template-columns: 1fr; }
+    .tradeoff-grid { grid-template-columns: 1fr; }
+  }
+
+  .raw-table-wrap { margin-top: 14px; overflow-x: auto; }
+  table.raw { border-collapse: collapse; width: 100%; font-size: 11.5px; }
+  table.raw th, table.raw td { padding: 6px 10px; border-bottom: 1px solid var(--border); text-align: right; white-space: nowrap; }
+  table.raw th:first-child, table.raw td:first-child { text-align: left; }
+  table.raw th { color: var(--ink-muted); font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.03em; }
+  table.raw td { font-family: "IBM Plex Mono", monospace; color: var(--ink-secondary); }
+  table.raw td:first-child { color: var(--ink); font-family: "IBM Plex Sans", sans-serif; font-weight: 500; }
+
+  /* ---------- glossary ---------- */
+  .glossary { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 24px; }
+  .g-item dt { font-size: 12.5px; font-weight: 600; margin-bottom: 4px; }
+  .g-item dt .mono { font-weight: 500; color: var(--ink-muted); font-size: 11px; }
+  .g-item dd { margin: 0; color: var(--ink-secondary); font-size: 12px; line-height: 1.55; }
+
+  .foot {
+    color: var(--ink-muted);
+    font-size: 11.5px;
+    line-height: 1.7;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+  .foot b { color: var(--ink-secondary); }
+
+  @media (max-width: 860px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .row-2 { grid-template-columns: 1fr; }
+    .bom-level1-grid { grid-template-columns: repeat(2, 1fr); }
+    .queue-row { grid-template-columns: 76px 1.4fr 0.8fr; }
+    .queue-row .q-hide-mobile { display: none; }
+    .glossary { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="shell">
+
+  <div class="topbar">
+    <div>
+      <div class="brand-row">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h4M16 12h4M12 4v4M12 16v4M7 7l2.5 2.5M14.5 14.5L17 17M17 7l-2.5 2.5M9.5 14.5L7 17" stroke="white" stroke-width="1.8" stroke-linecap="round"/><rect x="8.5" y="8.5" width="7" height="7" rx="1.4" stroke="white" stroke-width="1.8"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">FabPulse</div>
+          <div class="brand-sub">반도체 장비 AI 수요예측 &amp; MRP 콘솔</div>
+        </div>
+      </div>
+      <h1>PE-3000 플라즈마 에처 — 부품 조달 계획</h1>
+      <p class="lede">완제품 수요예측(AI)을 BOM 전개 → 안전재고 → 넷팅 → 리드타임 오프셋까지 흘려보내
+      부품별 발주 시점과 금액을 자동으로 산출합니다. 아래 수치는 학습용으로 합성한 시뮬레이션
+      데이터입니다.</p>
+    </div>
+    <div class="model-badge">
+      <span class="tag"><span class="dot"></span><span id="model-name" class="mono"></span></span>
+      <div class="caption">채택 예측 모델 · 백테스트 기준 최저 오차</div>
+      <button class="theme-btn" id="theme-toggle" type="button">라이트 모드로 보기</button>
+    </div>
+  </div>
+
+  <div class="kpi-grid" id="kpi-grid"></div>
+
+  <div class="panel">
+    <div class="row-2">
+      <div>
+        <div class="panel-head">
+          <div class="panel-title">완제품 월별 수요 — 실적 &amp; 향후 6개월 예측</div>
+          <div class="panel-note">단위: 대 / 월</div>
+        </div>
+        <p class="panel-desc">2023년 하반기 반도체 CAPEX 다운턴 이후, 2025년 말부터 AI向 반도체 투자 확대로
+        수요가 반등하는 구간입니다. 음영은 90% 신뢰구간입니다.</p>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-swatch" style="background:var(--accent)"></span>실적 출하량</div>
+          <div class="legend-item"><span class="legend-swatch dashed"></span>AI 예측 (SARIMAX + Book-to-Bill)</div>
+          <div class="legend-item"><span class="legend-swatch band" style="background:var(--accent)"></span>90% 신뢰구간</div>
+        </div>
+        <div class="chart-wrap" id="demand-chart-wrap"></div>
+        <button class="toggle-btn" id="toggle-demand-table" type="button" style="margin-top:12px;">표로 보기</button>
+        <div class="raw-table-wrap" id="demand-table" style="display:none;"></div>
+      </div>
+      <div>
+        <div class="panel-head">
+          <div class="panel-title">예측 모델 비교</div>
+          <div class="panel-note">MAPE, 최근 6개월 백테스트</div>
+        </div>
+        <p class="panel-desc">Book-to-Bill Ratio(반도체 업계 실제 선행지표)를 반영한 SARIMAX 모델이
+        naive·Holt-Winters 대비 오차를 큰 폭으로 줄였습니다.</p>
+        <div id="mape-chart"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="panel-title">BOM 구조 — PE-3000 (3단)</div>
+      <div class="panel-note">수량은 완제품 1대 기준</div>
+    </div>
+    <p class="panel-desc">완제품 아래 5개 서브시스템, 그 아래 17개 발주 대상 부품(Level 2)으로 구성됩니다.
+    이 수량 배수가 위 수요예측에 곱해져 부품별 총소요량이 됩니다.</p>
+    <div class="bom-tree" id="bom-tree"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="panel-title">지금 조치가 필요한 부품 (Action Queue)</div>
+      <div class="panel-note" id="queue-note"></div>
+    </div>
+    <p class="panel-desc">부품별 &quot;가장 이른&quot; 발주 필요 시점만 추린 목록입니다. 리드타임이 길수록,
+    현재고가 얇을수록 상단(긴급)에 위치합니다.</p>
+    <div class="queue" id="queue"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="panel-title">이익 임팩트 — 이 조달 계획이 지키는 회사 이익</div>
+      <div class="panel-note">Revenue at Risk × 안전재고 서비스수준 트레이드오프</div>
+    </div>
+    <p class="panel-desc">Action Queue의 "지금 조치 필요" 부품이 실제로 방치되면 완제품 출하가 막히고,
+    이는 매출·마진 손실로 직결됩니다. 아래는 그 손실을 금액으로 환산한 것과, 반대로 안전재고를
+    더 쌓아 리스크를 줄일 때 그 재고에 묶이는 자본비용이 방어한 마진보다 큰지 작은지를 비교한
+    결과입니다 — 결국 "안전재고를 얼마나 들고 갈까"는 감이 아니라 재무적 트레이드오프로 판단할 수
+    있습니다.</p>
+    <div class="assumption-note">
+      <span>ⓘ</span>
+      <div><b>가정치 안내.</b> 완제품 판매단가(ASP) <span class="mono" id="assump-asp"></span>,
+      매출총이익률 <span class="mono" id="assump-margin"></span> (반도체 장비업계 공개 수치 참고),
+      재고 자본비용(연) <span class="mono" id="assump-capital"></span> — 전부 학습용 가정치이며
+      실제 특정 기업의 재무 수치가 아닙니다. 방법론(리스크를 $로 환산하고, 서비스수준별 트레이드오프를
+      계산하는 방식)이 핵심이며, 절대 금액 자체가 결론은 아닙니다.</div>
+    </div>
+
+    <div class="profit-kpi-row" id="profit-kpi-row"></div>
+
+    <div class="profit-subhead">부품별 매출·마진 리스크 — 지금 방치 시 (Past Due 부품만)</div>
+    <div class="raw-table-wrap"><table class="raw" id="rar-table"></table></div>
+
+    <div class="profit-subhead">안전재고 서비스수준별 트레이드오프 — 향후 6개월 기준</div>
+    <div class="tradeoff-grid" id="tradeoff-grid"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="panel-title">설계변경(ECN) 대응 시뮬레이터 — 부품 단종 시나리오</div>
+      <div class="panel-note">Where-Used → 대체품 탐색 → MRP 재계산</div>
+    </div>
+    <p class="panel-desc">Action Queue의 위험 부품 중 일부가 실제로 단종(EOL)되거나 규제로 소재가
+    바뀌면 어떻게 될까요? PLM의 &quot;Where-Used&quot; 조회로 영향 범위를 확인하고, Z2Data/SiliconExpert류
+    툴의 Drop-in 등급(A/B/C)별로 대체품을 적용했을 때 발주 시점·금액이 어떻게 바뀌는지 시뮬레이션합니다.
+    최종 채택 여부는 CCB(Change Control Board) 승인이 필요합니다 — 이 표는 그 판단 재료입니다.</p>
+    <div class="eco-tabs" id="eco-tabs"></div>
+    <div id="eco-detail"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="panel-title">부품 × 월 발주 계획</div>
+      <div class="panel-note">색 진하기 = 발주 수량</div>
+    </div>
+    <p class="panel-desc">MRP 넷팅 결과 부품별로 각 월에 발주해야 하는 수량입니다. 금액이 큰 부품 순으로 정렬했습니다.</p>
+    <div class="heatmap-scroll">
+      <table class="heat" id="heat-table"></table>
+    </div>
+    <div class="heat-scale">
+      <span>0</span>
+      <div class="heat-scale-ramp">
+        <span style="background:var(--seq-100)"></span>
+        <span style="background:var(--seq-300)"></span>
+        <span style="background:var(--seq-500)"></span>
+        <span style="background:var(--seq-700)"></span>
+        <span style="background:var(--seq-900)"></span>
+      </div>
+      <span>최대</span>
+      <button class="toggle-btn" id="toggle-heat-table" type="button" style="margin-left:auto;">표로 보기</button>
+    </div>
+    <div class="raw-table-wrap" id="heat-raw-table" style="display:none;"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="panel-title">핵심 SCM 개념</div>
+    </div>
+    <dl class="glossary">
+      <div class="g-item"><dt>BOM <span class="mono">Bill of Materials</span></dt><dd>완제품 1개를 만드는 데 필요한 하위 부품과 수량을 계층적으로 정의한 것. 상위 배수를 곱해가며 최종 부품까지 펼치는 것을 BOM 전개라 함.</dd></div>
+      <div class="g-item"><dt>넷팅 <span class="mono">Netting</span></dt><dd>총소요량에서 현재고·입고예정분을 차감해 실제로 더 발주해야 할 순소요량을 계산하는 과정.</dd></div>
+      <div class="g-item"><dt>리드타임 오프셋</dt><dd>필요 시점에서 조달 리드타임만큼 앞당겨 발주 시점(release date)을 역산하는 것.</dd></div>
+      <div class="g-item"><dt>안전재고 <span class="mono">Safety Stock</span></dt><dd>수요·리드타임 변동을 흡수하기 위한 완충재고. 서비스수준(Z값)과 리드타임 동안의 수요 표준편차로 계산.</dd></div>
+      <div class="g-item"><dt>MOQ <span class="mono">Minimum Order Quantity</span></dt><dd>공급업체가 허용하는 최소 발주 수량. 순소요량이 이보다 작아도 MOQ만큼 주문.</dd></div>
+      <div class="g-item"><dt>Book-to-Bill Ratio</dt><dd>반도체 장비 업계에서 실제 발표되는 &quot;수주액 ÷ 출하액&quot; 지표. 1.0을 넘으면 통상 2~3개월 뒤 출하 증가로 이어지는 선행지표.</dd></div>
+      <div class="g-item"><dt>Where-Used</dt><dd>특정 부품이 어느 상위 조립품·완제품에 쓰이는지 역방향으로 조회하는 PLM 기능. 설계변경/단종이 발생했을 때 영향 범위를 파악하는 데 씀.</dd></div>
+      <div class="g-item"><dt>Drop-in 등급 <span class="mono">A/B/C</span></dt><dd>대체 부품이 기존 부품과 얼마나 호환되는지의 등급. A=재인증 없이 즉시 대체, B=경미한 검토 필요, C=전체 재인증 필요.</dd></div>
+      <div class="g-item"><dt>ECO <span class="mono">Engineering Change Order</span></dt><dd>설계변경을 실제로 반영하라는 공식 지시서. CCB(Change Control Board) 승인을 거쳐 발행되며, 이후 ERP의 BOM·MRP에 반영됨.</dd></div>
+      <div class="g-item"><dt>Revenue at Risk <span class="mono">매출 리스크</span></dt><dd>특정 부품의 조달 지연이 완제품 출하를 얼마나 막는지를 대수(unit)로 환산한 뒤, 판매단가(ASP)를 곱해 &quot;막힌 매출&quot;로 표현한 것. 마진율을 곱하면 실제 손익에 미치는 영향(마진 리스크)이 됨.</dd></div>
+      <div class="g-item"><dt>서비스수준 <span class="mono">Service Level, Z값</span></dt><dd>재고가 수요를 충족시킬 확률의 목표치. 정규분포 가정 하에 Z값(예: 95%→1.65)으로 변환해 안전재고 = Z × 리드타임 동안의 수요 표준편차로 계산. Z를 올릴수록 품절 리스크는 줄지만 묶이는 재고(자본)는 늘어남.</dd></div>
+      <div class="g-item"><dt>단위정규손실함수 <span class="mono">Unit Normal Loss Function</span></dt><dd>주어진 서비스수준(Z)에서 한 발주주기 동안 &quot;기대되는 품절 수량&quot;을 계산하는 재고이론 공식(L(z) = φ(z) − z(1−Φ(z))). 서비스수준을 재무적 기대손실로 정량 환산하는 데 씀.</dd></div>
+    </dl>
+  </div>
+
+  <div class="foot">
+    <b>데이터 안내.</b> 이 대시보드의 수요 이력, BOM, 재고, 리드타임은 전부 학습 목적으로 합성한 시뮬레이션
+    데이터이며 특정 기업의 실제 수치가 아닙니다. Book-to-Bill 기반 SARIMAX 모델은 예측 지평이
+    선행 개월수(3개월)를 넘어가는 구간에서는 최신 지표값을 그대로 이월하는 단순화를 두고 있습니다.
+    안전재고는 서비스수준 95%(Z=1.65) 가정입니다. &middot; 소스: FabPulse MRP 시뮬레이터 (Python: pandas, statsmodels)
+  </div>
+
+</div>
+
+<script id="dashboard-data" type="application/json">__DASHBOARD_DATA__</script>
+<script>
+(function () {
+  "use strict";
+  const DATA = JSON.parse(document.getElementById("dashboard-data").textContent);
+  const fmtInt = n => Math.round(n).toLocaleString("en-US");
+  const fmtUSD = n => "$" + Math.round(n).toLocaleString("en-US");
+  const fmtUSDCompact = n => {
+    const abs = Math.abs(n);
+    if (abs >= 1e6) return "$" + (n/1e6).toFixed(2) + "M";
+    if (abs >= 1e3) return "$" + (n/1e3).toFixed(0) + "K";
+    return "$" + Math.round(n);
+  };
+  const fmtDeltaUSD = n => (n >= 0 ? "+" : "-") + fmtUSDCompact(Math.abs(n));
+  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  /* ============================= THEME TOGGLE ============================= */
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("theme-toggle");
+  function applyThemeLabel() {
+    const isLight = root.getAttribute("data-theme") === "light";
+    themeBtn.textContent = isLight ? "다크 모드로 보기" : "라이트 모드로 보기";
+  }
+  themeBtn.addEventListener("click", function () {
+    const isLight = root.getAttribute("data-theme") === "light";
+    if (isLight) { root.removeAttribute("data-theme"); }
+    else { root.setAttribute("data-theme", "light"); }
+    applyThemeLabel();
+    renderAll();
+  });
+  applyThemeLabel();
+
+  /* ============================= KPI STRIP ============================= */
+  function renderKPIs() {
+    const s = DATA.summary;
+    const bt = s.backtest;
+    const improvement = Math.round((1 - bt.sarimax_mape / bt.naive_mape) * 100);
+    const grid = document.getElementById("kpi-grid");
+    grid.innerHTML = "";
+    const kpis = [
+      {
+        label: "향후 6개월 총 발주 예상액",
+        value: fmtUSDCompact(s.total_order_value),
+        delta: `${s.forecast_horizon_months}개월 누적 · 17개 부품`,
+        tone: "neutral"
+      },
+      {
+        label: "즉시 조치 필요 부품",
+        value: s.n_parts_past_due + " / 17",
+        delta: "리드타임 대비 재고 부족 (Expedite)",
+        tone: "critical"
+      },
+      {
+        label: "AI 예측 오차 (MAPE)",
+        value: bt.sarimax_mape + "%",
+        delta: `naive 대비 오차 ${improvement}% 감소 (${bt.naive_mape}%→${bt.sarimax_mape}%)`,
+        tone: "good"
+      },
+      {
+        label: "수요예측 학습 기간",
+        value: s.history_months + "개월",
+        delta: "Book-to-Bill 3개월 선행지표 반영",
+        tone: "neutral"
+      },
+    ];
+    kpis.forEach(k => {
+      const el = document.createElement("div");
+      el.className = "kpi";
+      el.innerHTML = `
+        <div class="label">${k.label}</div>
+        <div class="value tnum">${k.value}</div>
+        <div class="delta ${k.tone}">${k.delta}</div>
+      `;
+      grid.appendChild(el);
+    });
+    document.getElementById("model-name").textContent = s.chosen_model;
+    document.getElementById("queue-note").textContent =
+      `${s.n_parts_past_due}건 긴급 · ${17 - s.n_parts_past_due}건 정상 스케줄`;
+  }
+
+  /* ============================= DEMAND CHART ============================= */
+  function renderDemandChart() {
+    const wrap = document.getElementById("demand-chart-wrap");
+    wrap.innerHTML = "";
+    const history = DATA.history.slice(-18); // 최근 18개월만 표시 (가독성)
+    const forecast = DATA.forecast;
+    const allPeriods = history.map(h => h.period).concat(forecast.map(f => f.period));
+    const n = allPeriods.length;
+
+    const W = 680, H = 300, M = { top: 16, right: 16, bottom: 28, left: 34 };
+    const plotW = W - M.left - M.right, plotH = H - M.top - M.bottom;
+
+    const values = history.map(h => h.units_shipped)
+      .concat(forecast.map(f => f.forecast_units))
+      .concat(forecast.map(f => f.upper_90));
+    const rawMax = Math.max(...values);
+    const tickStep = 10; // 깔끔한 10 단위 눈금
+    const yMax = Math.ceil((rawMax * 1.1) / tickStep) * tickStep;
+    const yMin = 0;
+
+    const x = i => M.left + (i / (n - 1)) * plotW;
+    const y = v => M.top + plotH - ((v - yMin) / (yMax - yMin)) * plotH;
+
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    svg.setAttribute("class", "chart");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "완제품 월별 수요 실적 및 예측");
+
+    // gridlines + y labels
+    const ticks = yMax / tickStep;
+    for (let t = 0; t <= ticks; t++) {
+      const val = tickStep * t;
+      const gy = y(val);
+      const line = document.createElementNS(svgNS, "line");
+      line.setAttribute("x1", M.left); line.setAttribute("x2", W - M.right);
+      line.setAttribute("y1", gy); line.setAttribute("y2", gy);
+      line.setAttribute("class", "grid-line");
+      svg.appendChild(line);
+      const label = document.createElementNS(svgNS, "text");
+      label.setAttribute("x", M.left - 8); label.setAttribute("y", gy + 3);
+      label.setAttribute("text-anchor", "end");
+      label.setAttribute("class", "axis-label");
+      label.textContent = Math.round(val);
+      svg.appendChild(label);
+    }
+
+    // x labels (every 3rd month)
+    allPeriods.forEach((p, i) => {
+      if (i % 3 !== 0) return;
+      const label = document.createElementNS(svgNS, "text");
+      label.setAttribute("x", x(i)); label.setAttribute("y", H - 8);
+      label.setAttribute("text-anchor", "middle");
+      label.setAttribute("class", "axis-label");
+      label.textContent = p.slice(2);
+      svg.appendChild(label);
+    });
+
+    // divider between history and forecast
+    const splitX = x(history.length - 1);
+    const divider = document.createElementNS(svgNS, "line");
+    divider.setAttribute("x1", splitX); divider.setAttribute("x2", splitX);
+    divider.setAttribute("y1", M.top); divider.setAttribute("y2", M.top + plotH);
+    divider.setAttribute("class", "axis-line");
+    divider.setAttribute("stroke-dasharray", "2 3");
+    svg.appendChild(divider);
+
+    // CI band (forecast only, continuing from last actual point)
+    const bandPts = [];
+    const lastActual = history[history.length - 1].units_shipped;
+    bandPts.push([history.length - 1, lastActual, lastActual]);
+    forecast.forEach((f, i) => bandPts.push([history.length + i, f.lower_90, f.upper_90]));
+    const upperPath = bandPts.map((p, i) => `${i === 0 ? "M" : "L"} ${x(p[0])} ${y(p[2])}`).join(" ");
+    const lowerPath = bandPts.slice().reverse().map(p => `L ${x(p[0])} ${y(p[1])}`).join(" ");
+    const band = document.createElementNS(svgNS, "path");
+    band.setAttribute("d", upperPath + " " + lowerPath + " Z");
+    band.setAttribute("fill", css("--accent"));
+    band.setAttribute("opacity", "0.12");
+    band.setAttribute("stroke", "none");
+    svg.appendChild(band);
+
+    // actual line
+    const actualPath = history.map((h, i) => `${i === 0 ? "M" : "L"} ${x(i)} ${y(h.units_shipped)}`).join(" ");
+    const actualLine = document.createElementNS(svgNS, "path");
+    actualLine.setAttribute("d", actualPath);
+    actualLine.setAttribute("fill", "none");
+    actualLine.setAttribute("stroke", css("--accent"));
+    actualLine.setAttribute("stroke-width", "2");
+    actualLine.setAttribute("stroke-linejoin", "round");
+    actualLine.setAttribute("stroke-linecap", "round");
+    svg.appendChild(actualLine);
+
+    // forecast line (dashed), connecting from last actual point
+    const fcPts = [[history.length - 1, lastActual]].concat(forecast.map((f, i) => [history.length + i, f.forecast_units]));
+    const fcPath = fcPts.map((p, i) => `${i === 0 ? "M" : "L"} ${x(p[0])} ${y(p[1])}`).join(" ");
+    const fcLine = document.createElementNS(svgNS, "path");
+    fcLine.setAttribute("d", fcPath);
+    fcLine.setAttribute("fill", "none");
+    fcLine.setAttribute("stroke", css("--accent"));
+    fcLine.setAttribute("stroke-width", "2");
+    fcLine.setAttribute("stroke-dasharray", "5 4");
+    fcLine.setAttribute("stroke-linecap", "round");
+    svg.appendChild(fcLine);
+
+    // end dot
+    const lastPt = fcPts[fcPts.length - 1];
+    const dot = document.createElementNS(svgNS, "circle");
+    dot.setAttribute("cx", x(lastPt[0])); dot.setAttribute("cy", y(lastPt[1]));
+    dot.setAttribute("r", 4.5);
+    dot.setAttribute("fill", css("--accent"));
+    dot.setAttribute("stroke", css("--surface"));
+    dot.setAttribute("stroke-width", "2");
+    svg.appendChild(dot);
+
+    // crosshair
+    const crosshair = document.createElementNS(svgNS, "line");
+    crosshair.setAttribute("y1", M.top); crosshair.setAttribute("y2", M.top + plotH);
+    crosshair.setAttribute("class", "crosshair");
+    svg.appendChild(crosshair);
+
+    // hover capture
+    const capture = document.createElementNS(svgNS, "rect");
+    capture.setAttribute("x", M.left); capture.setAttribute("y", M.top);
+    capture.setAttribute("width", plotW); capture.setAttribute("height", plotH);
+    capture.setAttribute("class", "hover-capture");
+    svg.appendChild(capture);
+
+    wrap.appendChild(svg);
+
+    const tooltip = document.createElement("div");
+    tooltip.className = "tooltip";
+    wrap.style.position = "relative";
+    wrap.appendChild(tooltip);
+
+    function showTooltip(i, evt) {
+      const period = allPeriods[i];
+      const isHist = i < history.length;
+      crosshair.setAttribute("x1", x(i)); crosshair.setAttribute("x2", x(i));
+      crosshair.style.opacity = 1;
+      let rows = "";
+      if (isHist) {
+        rows = `<div class="t-row"><span class="t-key"><span class="t-swatch" style="background:${css('--accent')}"></span>실적</span><span class="t-val tnum">${fmtInt(history[i].units_shipped)}대</span></div>`;
+      } else {
+        const f = forecast[i - history.length];
+        rows = `
+          <div class="t-row"><span class="t-key"><span class="t-swatch" style="background:${css('--accent')}"></span>예측</span><span class="t-val tnum">${fmtInt(f.forecast_units)}대</span></div>
+          <div class="t-row"><span class="t-key">90% 구간</span><span class="t-val tnum">${fmtInt(f.lower_90)}–${fmtInt(f.upper_90)}</span></div>
+        `;
+      }
+      tooltip.innerHTML = `<div class="t-head">${period}</div>${rows}`;
+      const rect = wrap.getBoundingClientRect();
+      const px = (x(i) / W) * rect.width;
+      const py = (y(isHist ? history[i].units_shipped : forecast[i - history.length].forecast_units) / H) * rect.height;
+      tooltip.style.left = px + "px";
+      tooltip.style.top = py + "px";
+      tooltip.style.opacity = 1;
+    }
+    function hideTooltip() {
+      crosshair.style.opacity = 0;
+      tooltip.style.opacity = 0;
+    }
+    capture.addEventListener("pointermove", function (evt) {
+      const rect = svg.getBoundingClientRect();
+      const relX = ((evt.clientX - rect.left) / rect.width) * W;
+      let i = Math.round(((relX - M.left) / plotW) * (n - 1));
+      i = Math.max(0, Math.min(n - 1, i));
+      showTooltip(i, evt);
+    });
+    capture.addEventListener("pointerleave", hideTooltip);
+  }
+
+  function renderDemandTable() {
+    const el = document.getElementById("demand-table");
+    let rows = DATA.history.map(h => `<tr><td>${h.period}</td><td class="tnum">${fmtInt(h.units_shipped)}</td><td class="tnum">${h.book_to_bill.toFixed(2)}</td><td>–</td><td>–</td></tr>`).join("");
+    rows += DATA.forecast.map(f => `<tr><td>${f.period}</td><td>–</td><td>–</td><td class="tnum">${fmtInt(f.forecast_units)}</td><td class="tnum">${fmtInt(f.lower_90)}–${fmtInt(f.upper_90)}</td></tr>`).join("");
+    el.innerHTML = `<table class="raw"><thead><tr><th>기간</th><th>실적(대)</th><th>B2B Ratio</th><th>예측(대)</th><th>90% 구간</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+
+  /* ============================= MAPE BAR CHART ============================= */
+  function renderMapeChart() {
+    const el = document.getElementById("mape-chart");
+    const bt = DATA.summary.backtest;
+    const models = [
+      { name: "Naive (작년 동월)", value: bt.naive_mape, color: "var(--series-2)" },
+      { name: "Holt-Winters", value: bt.hw_mape, color: "var(--series-3)" },
+      { name: "SARIMAX + B2B (채택)", value: bt.sarimax_mape, color: "var(--accent)" },
+    ];
+    const max = Math.max(...models.map(m => m.value)) * 1.15;
+    let html = `<div style="display:flex;flex-direction:column;gap:14px;padding-top:4px;">`;
+    models.forEach(m => {
+      const pct = (m.value / max) * 100;
+      html += `
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;">
+            <span style="color:var(--ink-secondary);">${m.name}</span>
+            <span class="tnum" style="font-family:'IBM Plex Mono',monospace;font-weight:600;">${m.value}%</span>
+          </div>
+          <div style="background:var(--grid);border-radius:4px;height:14px;overflow:hidden;">
+            <div style="width:${pct}%;height:100%;background:${m.color};border-radius:4px;"></div>
+          </div>
+        </div>`;
+    });
+    html += `</div>`;
+    el.innerHTML = html;
+  }
+
+  /* ============================= BOM TREE ============================= */
+  function renderBOM() {
+    const el = document.getElementById("bom-tree");
+    const bom = DATA.bom;
+    const level1 = bom.filter(b => b.level === 1);
+    // group level2 by parent (which is actually child_id of level1 rows acting as parent in level2 rows)
+    const level2ByParent = {};
+    bom.filter(b => b.level === 2).forEach(b => {
+      (level2ByParent[b.parent_id] = level2ByParent[b.parent_id] || []).push(b);
+    });
+    let html = `<div class="bom-root">PE-3000 · Plasma Etcher <span class="mono">완제품 (Level 0)</span></div>`;
+    html += `<div class="bom-level1-grid">`;
+    level1.forEach(sub => {
+      const parts = level2ByParent[sub.child_id] || [];
+      html += `<div class="bom-sub">
+        <div class="bom-sub-head">
+          <div class="bom-sub-name">${sub.child_name}</div>
+          <div class="bom-sub-qty">${sub.child_id} · ×${sub.qty_per} / 대</div>
+        </div>
+        <div class="bom-parts">`;
+      parts.forEach(p => {
+        html += `<div class="bom-part"><span class="bom-part-name">${p.child_name}</span><span class="bom-part-qty">×${p.qty_per}</span></div>`;
+      });
+      html += `</div></div>`;
+    });
+    html += `</div>`;
+    el.innerHTML = html;
+  }
+
+  /* ============================= ACTION QUEUE ============================= */
+  function severity(row) {
+    if (!row.is_past_due) return "good";
+    if (row.months_overdue >= 3) return "critical";
+    return "warning";
+  }
+  function severityLabel(sev, row) {
+    if (sev === "good") return "정상 예정";
+    if (sev === "critical") return `긴급 · ${row.months_overdue}개월 초과`;
+    return `주의 · ${row.months_overdue}개월 초과`;
+  }
+  function renderQueue() {
+    const el = document.getElementById("queue");
+    const rows = DATA.first_action.slice();
+    let html = `<div class="queue-row queue-head">
+      <div>상태</div><div>부품</div><div>발주 시점</div><div class="q-hide-mobile">발주 수량</div><div class="q-hide-mobile">금액</div><div class="q-hide-mobile">리드타임</div>
+    </div>`;
+    rows.forEach(r => {
+      const sev = severity(r);
+      html += `<div class="queue-row">
+        <div><span class="chip ${sev}"><span class="dot"></span>${sev === "good" ? "정상" : sev === "critical" ? "긴급" : "주의"}</span></div>
+        <div><div class="q-part">${r.part_name}</div><div class="q-supplier">${r.part_id} · ${r.supplier}</div></div>
+        <div class="q-release">${r.is_past_due ? "즉시 발주" : r.period + " 까지"}</div>
+        <div class="q-num q-hide-mobile">${fmtInt(r.order_qty)}개</div>
+        <div class="q-num q-hide-mobile">${fmtUSDCompact(r.order_value)}</div>
+        <div class="q-num q-hide-mobile">${r.lead_time_weeks}주</div>
+      </div>`;
+    });
+    el.innerHTML = html;
+  }
+
+  /* ============================= PROFIT IMPACT ============================= */
+  function renderProfitAssumptions() {
+    const pi = DATA.summary.profit_impact;
+    document.getElementById("assump-asp").textContent = fmtUSDCompact(pi.assumed_asp);
+    document.getElementById("assump-margin").textContent = Math.round(pi.assumed_gross_margin_pct * 100) + "%";
+    document.getElementById("assump-capital").textContent = Math.round(pi.assumed_annual_capital_cost_pct * 100) + "%";
+  }
+
+  function renderProfitKPIs() {
+    const el = document.getElementById("profit-kpi-row");
+    const pi = DATA.summary.profit_impact;
+    el.innerHTML = `
+      <div class="profit-kpi">
+        <div class="label">최대 마진 리스크 부품 (방치 시)</div>
+        <div class="value critical tnum">${fmtUSDCompact(pi.top_risk_margin_at_risk)}</div>
+        <div class="sub">${pi.top_risk_part_name} · 지연 지속 시 막히는 출하분의 마진</div>
+      </div>
+      <div class="profit-kpi">
+        <div class="label">현재 정책(95%) 기대 마진 리스크</div>
+        <div class="value tnum">${fmtUSDCompact(pi.baseline_expected_margin_at_risk)}</div>
+        <div class="sub">수요·리드타임 변동성만 반영한 향후 6개월 기대값</div>
+      </div>
+      <div class="profit-kpi">
+        <div class="label">최선 서비스수준 전환 시 순이익 임팩트</div>
+        <div class="value good tnum">${fmtDeltaUSD(pi.best_net_profit_impact)}</div>
+        <div class="sub">${pi.best_service_level}로 전환 (95% 대비, 재고 자본비용 차감 후)</div>
+      </div>
+    `;
+  }
+
+  function renderRarTable() {
+    const el = document.getElementById("rar-table");
+    const rows = DATA.revenue_at_risk
+      .filter(r => r.is_past_due)
+      .sort((a, b) => b.margin_at_risk - a.margin_at_risk);
+    let html = `<thead><tr>
+      <th>부품</th><th>지연</th><th>위험 수량(완제품 대수)</th><th>매출 리스크</th><th>마진 리스크</th>
+    </tr></thead><tbody>`;
+    rows.forEach(r => {
+      html += `<tr>
+        <td>${r.part_name}</td>
+        <td class="tnum">${r.months_overdue}개월</td>
+        <td class="tnum">${r.at_risk_top_units}</td>
+        <td class="tnum">${fmtUSDCompact(r.revenue_at_risk)}</td>
+        <td class="tnum">${fmtUSDCompact(r.margin_at_risk)}</td>
+      </tr>`;
+    });
+    html += `</tbody>`;
+    el.innerHTML = html;
+  }
+
+  function renderTradeoffGrid() {
+    const el = document.getElementById("tradeoff-grid");
+    const rows = DATA.service_level_tradeoff;
+    const bestLevel = DATA.summary.profit_impact.best_service_level;
+    el.innerHTML = rows.map(r => {
+      const isBaseline = r.z === 1.65;
+      const isBest = !isBaseline && r.service_level === bestLevel;
+      let cardCls = "tradeoff-card";
+      if (isBaseline) cardCls += " baseline";
+      if (isBest) cardCls += " best";
+      const netCls = isBaseline ? "" : (r.net_profit_impact_vs_baseline >= 0 ? "good" : "critical");
+      const netVal = isBaseline ? "기준 (±0)" : fmtDeltaUSD(r.net_profit_impact_vs_baseline);
+      return `
+        <div class="${cardCls}">
+          <div class="tradeoff-card-head">
+            <div class="tradeoff-card-level">${r.service_level}</div>
+            <div class="tradeoff-card-z">Z=${r.z}</div>
+          </div>
+          <div class="tradeoff-row"><span class="k">안전재고 투자액</span><span class="v tnum">${fmtUSDCompact(r.total_working_capital)}</span></div>
+          <div class="tradeoff-row"><span class="k">기대 마진 리스크</span><span class="v tnum">${fmtUSDCompact(r.expected_margin_at_risk)}</span></div>
+          <div class="tradeoff-row"><span class="k">자본비용 델타 (vs 95%)</span><span class="v tnum">${isBaseline ? "±0" : fmtDeltaUSD(r.capital_cost_delta_vs_baseline)}</span></div>
+          <div class="tradeoff-net">
+            <span class="k">순이익 임팩트 (vs 95%)</span>
+            <span class="v tnum ${netCls}">${netVal}</span>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  /* ============================= ECN SIMULATOR ============================= */
+  let ecoSelectedIndex = 0;
+  function severityFromMonths(isPastDue, months) {
+    if (!isPastDue) return "good";
+    if (months >= 3) return "critical";
+    return "warning";
+  }
+  function renderEcoTabs() {
+    const el = document.getElementById("eco-tabs");
+    const scenarios = DATA.eco_scenarios;
+    el.innerHTML = scenarios.map((s, i) => `
+      <button type="button" class="eco-tab ${i === ecoSelectedIndex ? 'active' : ''}" data-idx="${i}">
+        <span class="eco-tab-id mono">${s.eco_id}</span>
+        <span class="eco-tab-part">${s.part_name}</span>
+      </button>
+    `).join("");
+    el.querySelectorAll(".eco-tab").forEach(btn => {
+      btn.addEventListener("click", () => {
+        ecoSelectedIndex = Number(btn.dataset.idx);
+        renderEcoTabs();
+        renderEcoDetail();
+      });
+    });
+  }
+  function renderEcoDetail() {
+    const el = document.getElementById("eco-detail");
+    const s = DATA.eco_scenarios[ecoSelectedIndex];
+    const wu = s.where_used;
+    const b = s.baseline;
+    const bSev = severityFromMonths(b.is_past_due, b.months_overdue);
+    const bLabel = b.is_past_due
+      ? `<span class="chip ${bSev}"><span class="dot"></span>${bSev === 'critical' ? '긴급' : '주의'} · ${b.months_overdue}개월 초과</span>`
+      : `<span class="chip good"><span class="dot"></span>정상 예정</span>`;
+
+    let html = `
+      <div class="eco-trigger"><span>⚠</span><div><b>${s.part_name}</b> (${s.part_id}) · ${s.trigger}</div></div>
+      <div class="eco-whereused">
+        <span class="crumb"><b>${wu.product_name}</b><span class="crumb-qty">완제품 1대당 ${wu.qty_per_product}개</span></span>
+        <span class="crumb-sep">›</span>
+        <span class="crumb"><b>${wu.subsystem_name}</b><span class="crumb-qty">서브시스템 1개당 ${wu.qty_per_subsystem}개</span></span>
+        <span class="crumb-sep">›</span>
+        <span class="crumb"><b>${s.part_name}</b><span class="crumb-qty mono">${s.part_id}</span></span>
+      </div>
+      <div class="eco-baseline">
+        <div>
+          <div class="eco-baseline-label">현재(기존 부품) 상태 · 리드타임 ${b.lead_time_weeks}주 · 단가 ${fmtUSD(b.unit_cost)}</div>
+          <div class="eco-baseline-val">${bLabel} · 향후 6개월 발주 예상액 ${fmtUSDCompact(b.six_month_total_order_value)}</div>
+        </div>
+      </div>
+      <div class="eco-grid">
+    `;
+
+    s.substitutes.forEach(sub => {
+      const r = sub.result;
+      const sev = severityFromMonths(r.is_past_due, r.months_overdue);
+      const statusChip = r.is_past_due
+        ? `<span class="chip ${sev}"><span class="dot"></span>${sev === 'critical' ? '여전히 긴급' : '여전히 주의'} · ${r.months_overdue}개월</span>`
+        : `<span class="chip good"><span class="dot"></span>정상화됨</span>`;
+      const gradeSevMap = { A: "good", B: "warning", C: "critical" };
+      html += `
+        <div class="eco-card">
+          <div class="eco-card-head">
+            <div class="eco-card-name">${sub.alt_name}</div>
+            <span class="chip ${gradeSevMap[sub.grade]}"><span class="dot"></span>${sub.grade}등급</span>
+          </div>
+          <div class="eco-card-stats">
+            <div class="eco-card-stat"><div class="k">리드타임</div><div class="v">${r.lead_time_weeks}주</div></div>
+            <div class="eco-card-stat"><div class="k">단가 변동</div><div class="v">${sub.cost_delta_pct > 0 ? '+' : ''}${sub.cost_delta_pct}%</div></div>
+          </div>
+          <div class="eco-card-note">${sub.grade_desc}<br>${sub.note}</div>
+          <div class="eco-card-impact">
+            <div class="impact-row"><span class="impact-key">적용 후 상태</span><span class="impact-val">${statusChip}</span></div>
+            <div class="impact-row"><span class="impact-key">6개월 발주액 델타</span><span class="impact-val tnum">${fmtDeltaUSD(r.six_month_value_delta)}</span></div>
+          </div>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+    el.innerHTML = html;
+  }
+
+  /* ============================= HEATMAP ============================= */
+  function renderHeatmap() {
+    const el = document.getElementById("heat-table");
+    const months = DATA.forecast.map(f => f.period);
+    const orderMap = {};
+    DATA.mrp.forEach(r => {
+      orderMap[r.part_id] = orderMap[r.part_id] || {};
+      orderMap[r.part_id][r.period] = r;
+    });
+    const parts = DATA.order_summary.slice(); // already sorted by value desc
+    const maxQty = Math.max(...DATA.mrp.map(r => r.order_qty));
+
+    function ramp(qty) {
+      if (qty <= 0) return null;
+      const t = qty / maxQty;
+      if (t < 0.2) return css("--seq-100");
+      if (t < 0.4) return css("--seq-300");
+      if (t < 0.65) return css("--seq-500");
+      if (t < 0.85) return css("--seq-700");
+      return css("--seq-900");
+    }
+    function textColorFor(bg) {
+      // 배경색의 상대 휘도를 계산해서 명/암 텍스트를 고른다 (라이트/다크 테마 모두에서 대비 보장)
+      if (!bg) return css("--ink-muted");
+      const hex = bg.trim().replace("#", "");
+      const r = parseInt(hex.substring(0, 2), 16) / 255;
+      const g = parseInt(hex.substring(2, 4), 16) / 255;
+      const b = parseInt(hex.substring(4, 6), 16) / 255;
+      const lin = c => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+      const luminance = 0.2126 * lin(r) + 0.0722 * lin(b) + 0.7152 * lin(g);
+      return luminance > 0.42 ? "#0b0b0b" : "#ffffff";
+    }
+
+    let thead = `<thead><tr><th>부품</th>${months.map(m => `<th class="month-col">${m.slice(2)}</th>`).join("")}</tr></thead>`;
+    let tbody = "<tbody>";
+    parts.forEach(p => {
+      tbody += `<tr><th><div class="heat-part-name">${p.part_name}</div><div class="heat-part-id">${p.part_id}</div></th>`;
+      months.forEach(m => {
+        const cell = (orderMap[p.part_id] || {})[m];
+        const qty = cell ? cell.order_qty : 0;
+        const bg = ramp(qty);
+        const past = cell && cell.planned_release_period === "즉시발주(Past Due)" && qty > 0;
+        tbody += `<td class="heat-cell" data-part="${p.part_name}" data-month="${m}" data-qty="${qty}" data-value="${cell ? cell.order_value : 0}" data-past="${past}">
+          <div class="heat-fill" style="background:${bg || 'transparent'};color:${textColorFor(bg)};${bg ? '' : 'border:1px dashed var(--grid);'}">
+            ${qty > 0 ? qty : ""}
+          </div>
+        </td>`;
+      });
+      tbody += "</tr>";
+    });
+    tbody += "</tbody>";
+    el.innerHTML = thead + tbody;
+
+    // tooltip on cells
+    const tooltip = document.createElement("div");
+    tooltip.className = "tooltip";
+    el.parentElement.style.position = "relative";
+    el.parentElement.appendChild(tooltip);
+    el.querySelectorAll(".heat-cell").forEach(td => {
+      td.addEventListener("pointermove", function (evt) {
+        const qty = Number(td.dataset.qty);
+        if (qty <= 0) { tooltip.style.opacity = 0; return; }
+        const rect = el.parentElement.getBoundingClientRect();
+        const cellRect = td.getBoundingClientRect();
+        tooltip.innerHTML = `<div class="t-head">${td.dataset.part} · ${td.dataset.month}</div>
+          <div class="t-row"><span class="t-key">발주 수량</span><span class="t-val tnum">${fmtInt(qty)}개</span></div>
+          <div class="t-row"><span class="t-key">발주 금액</span><span class="t-val tnum">${fmtUSD(Number(td.dataset.value))}</span></div>
+          ${td.dataset.past === "true" ? `<div class="t-row"><span class="t-key" style="color:var(--critical)">⚠ 즉시발주 필요</span></div>` : ""}`;
+        tooltip.style.left = (cellRect.left - rect.left + cellRect.width / 2) + "px";
+        tooltip.style.top = (cellRect.top - rect.top) + "px";
+        tooltip.style.opacity = 1;
+      });
+      td.addEventListener("pointerleave", () => tooltip.style.opacity = 0);
+    });
+  }
+
+  function renderHeatRawTable() {
+    const el = document.getElementById("heat-raw-table");
+    const months = DATA.forecast.map(f => f.period);
+    const orderMap = {};
+    DATA.mrp.forEach(r => {
+      orderMap[r.part_id] = orderMap[r.part_id] || {};
+      orderMap[r.part_id][r.period] = r;
+    });
+    let head = `<tr><th>부품</th>${months.map(m => `<th>${m}</th>`).join("")}<th>합계</th></tr>`;
+    let rows = DATA.order_summary.map(p => {
+      const cells = months.map(m => {
+        const c = (orderMap[p.part_id] || {})[m];
+        return `<td>${c && c.order_qty > 0 ? fmtInt(c.order_qty) : "–"}</td>`;
+      }).join("");
+      return `<tr><td>${p.part_name}</td>${cells}<td>${fmtInt(p.total_order_qty)}</td></tr>`;
+    }).join("");
+    el.innerHTML = `<table class="raw">${head}${rows}</table>`;
+  }
+
+  /* ============================= WIRE UP TOGGLES (once) ============================= */
+  let wired = false;
+  function wireToggles() {
+    if (wired) return;
+    wired = true;
+    const dBtn = document.getElementById("toggle-demand-table");
+    const dTbl = document.getElementById("demand-table");
+    dBtn.addEventListener("click", () => {
+      const show = dTbl.style.display === "none";
+      dTbl.style.display = show ? "block" : "none";
+      dBtn.textContent = show ? "표 숨기기" : "표로 보기";
+    });
+    const hBtn = document.getElementById("toggle-heat-table");
+    const hTbl = document.getElementById("heat-raw-table");
+    hBtn.addEventListener("click", () => {
+      const show = hTbl.style.display === "none";
+      hTbl.style.display = show ? "block" : "none";
+      hBtn.textContent = show ? "표 숨기기" : "표로 보기";
+    });
+  }
+
+  function renderAll() {
+    renderKPIs();
+    renderDemandChart();
+    renderDemandTable();
+    renderMapeChart();
+    renderBOM();
+    renderQueue();
+    renderProfitAssumptions();
+    renderProfitKPIs();
+    renderRarTable();
+    renderTradeoffGrid();
+    renderEcoTabs();
+    renderEcoDetail();
+    renderHeatmap();
+    renderHeatRawTable();
+    wireToggles();
+  }
+
+  renderAll();
+  window.addEventListener("resize", () => { renderDemandChart(); });
+})();
+</script>

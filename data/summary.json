@@ -1,0 +1,79 @@
+{
+  "product_id": "PE-3000",
+  "product_name": "Plasma Etcher PE-3000",
+  "chosen_model": "SARIMAX + Book-to-Bill Ratio",
+  "resid_std": 2.01,
+  "backtest": {
+    "periods": [
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08"
+    ],
+    "test_actual": [
+      28.0,
+      22.0,
+      21.0,
+      22.0,
+      21.0,
+      20.0
+    ],
+    "hw_pred": [
+      29.2,
+      27.0,
+      27.6,
+      29.8,
+      31.4,
+      30.4
+    ],
+    "sarimax_pred": [
+      25.5,
+      24.7,
+      24.6,
+      24.6,
+      24.9,
+      24.8
+    ],
+    "naive_pred": [
+      17.0,
+      14.0,
+      15.0,
+      18.0,
+      20.0,
+      19.0
+    ],
+    "hw_mape": 32.6,
+    "sarimax_mape": 15.5,
+    "naive_mape": 22.0
+  },
+  "total_order_value": 11609460.0,
+  "n_parts_past_due": 12,
+  "past_due_parts": [
+    "PRT-CCU",
+    "PRT-DVP",
+    "PRT-EEF",
+    "PRT-ESC",
+    "PRT-GVM",
+    "PRT-LNR",
+    "PRT-MFC",
+    "PRT-RFA",
+    "PRT-RFM",
+    "PRT-RFS",
+    "PRT-SVM",
+    "PRT-TMP"
+  ],
+  "forecast_horizon_months": 6,
+  "history_months": 36,
+  "profit_impact": {
+    "assumed_asp": 3500000,
+    "assumed_gross_margin_pct": 0.48,
+    "assumed_annual_capital_cost_pct": 0.1,
+    "top_risk_part_name": "Turbo Molecular Pump",
+    "top_risk_margin_at_risk": 140280000.0,
+    "baseline_expected_margin_at_risk": 1488246.0,
+    "best_service_level": "99%",
+    "best_net_profit_impact": 1220824.0
+  }
+}

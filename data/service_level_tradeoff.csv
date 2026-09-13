@@ -1,0 +1,4 @@
+service_level,z,total_working_capital,expected_units_at_risk,expected_revenue_at_risk,expected_margin_at_risk,capital_cost_delta_vs_baseline,net_profit_impact_vs_baseline
+90%,1.28,1003530.0,2.04,7136202.0,3425377.0,-14163.0,-1922968.0
+95% (현재 정책),1.65,1286790.0,0.89,3100512.0,1488246.0,0.0,0.0
+99%,2.33,1800160.0,0.14,503654.0,241754.0,25668.0,1220824.0

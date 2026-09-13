@@ -1,0 +1,23 @@
+parent_id,parent_name,child_id,child_name,level,qty_per
+PE-3000,Plasma Etcher PE-3000,SUB-PCM,Process Chamber Module,1,1
+PE-3000,Plasma Etcher PE-3000,SUB-RFG,RF Generator Assembly,1,2
+PE-3000,Plasma Etcher PE-3000,SUB-GDS,Gas Delivery System,1,1
+PE-3000,Plasma Etcher PE-3000,SUB-WHR,Wafer Handling Robot,1,1
+PE-3000,Plasma Etcher PE-3000,SUB-CVM,Chiller & Vacuum Module,1,1
+SUB-PCM,Process Chamber Module,PRT-ESC,Ceramic Electrostatic Chuck,2,1
+SUB-PCM,Process Chamber Module,PRT-LNR,Quartz Chamber Liner,2,1
+SUB-PCM,Process Chamber Module,PRT-FRS,Focus Ring Set,2,2
+SUB-PCM,Process Chamber Module,PRT-VPW,Viewport Window,2,2
+SUB-RFG,RF Generator Assembly,PRT-RFM,RF Matching Network,2,1
+SUB-RFG,RF Generator Assembly,PRT-RFA,RF Power Amplifier Module,2,1
+SUB-RFG,RF Generator Assembly,PRT-RFS,RF Sensor/Coupler,2,2
+SUB-GDS,Gas Delivery System,PRT-MFC,Mass Flow Controller,2,6
+SUB-GDS,Gas Delivery System,PRT-GVM,Gas Valve Manifold,2,2
+SUB-GDS,Gas Delivery System,PRT-PTR,Pressure Transducer,2,2
+SUB-WHR,Wafer Handling Robot,PRT-SVM,Servo Motor Actuator,2,3
+SUB-WHR,Wafer Handling Robot,PRT-EEF,Robot Arm End Effector,2,2
+SUB-WHR,Wafer Handling Robot,PRT-WPS,Wafer Position Sensor,2,4
+SUB-CVM,Chiller & Vacuum Module,PRT-TMP,Turbo Molecular Pump,2,1
+SUB-CVM,Chiller & Vacuum Module,PRT-DVP,Dry Vacuum Pump,2,1
+SUB-CVM,Chiller & Vacuum Module,PRT-CCU,Chiller Compressor Unit,2,1
+SUB-CVM,Chiller & Vacuum Module,PRT-CFS,Coolant Flow Sensor,2,2

@@ -1,0 +1,103 @@
+part_id,part_name,supplier,period,period_index,gross_requirement,scheduled_receipt,safety_stock,projected_on_hand,net_requirement,order_qty,unit_cost,order_value,lead_time_weeks,planned_release_period_index,planned_release_period,moq
+PRT-CCU,Chiller Compressor Unit,ThermoChill Systems,2026-09,0,20.6,0,12,14.4,0.0,0,4300,0,9,,-,2
+PRT-CCU,Chiller Compressor Unit,ThermoChill Systems,2026-10,1,19.9,0,12,12.0,17.5,18,4300,77400,9,-2.0,즉시발주(Past Due),2
+PRT-CCU,Chiller Compressor Unit,ThermoChill Systems,2026-11,2,20.4,0,12,12.0,20.4,21,4300,90300,9,-1.0,즉시발주(Past Due),2
+PRT-CCU,Chiller Compressor Unit,ThermoChill Systems,2026-12,3,22.6,0,12,12.0,22.6,23,4300,98900,9,0.0,2026-09,2
+PRT-CCU,Chiller Compressor Unit,ThermoChill Systems,2027-01,4,21.2,0,12,12.0,21.2,22,4300,94600,9,1.0,2026-10,2
+PRT-CCU,Chiller Compressor Unit,ThermoChill Systems,2027-02,5,21.1,0,12,12.0,21.1,22,4300,94600,9,2.0,2026-11,2
+PRT-CFS,Coolant Flow Sensor,ThermoChill Systems,2026-09,0,41.2,0,12,16.8,0.0,0,290,0,3,,-,10
+PRT-CFS,Coolant Flow Sensor,ThermoChill Systems,2026-10,1,39.8,0,12,12.0,35.0,35,290,10150,3,0.0,2026-09,10
+PRT-CFS,Coolant Flow Sensor,ThermoChill Systems,2026-11,2,40.8,0,12,12.0,40.8,41,290,11890,3,1.0,2026-10,10
+PRT-CFS,Coolant Flow Sensor,ThermoChill Systems,2026-12,3,45.2,0,12,12.0,45.2,46,290,13340,3,2.0,2026-11,10
+PRT-CFS,Coolant Flow Sensor,ThermoChill Systems,2027-01,4,42.4,0,12,12.0,42.4,43,290,12470,3,3.0,2026-12,10
+PRT-CFS,Coolant Flow Sensor,ThermoChill Systems,2027-02,5,42.2,0,12,12.0,42.2,43,290,12470,3,4.0,2027-01,10
+PRT-DVP,Dry Vacuum Pump,VacuTech Global,2026-09,0,20.6,0,14,17.4,0.0,0,6100,0,10,,-,2
+PRT-DVP,Dry Vacuum Pump,VacuTech Global,2026-10,1,19.9,0,14,14.0,16.5,17,6100,103700,10,-2.0,즉시발주(Past Due),2
+PRT-DVP,Dry Vacuum Pump,VacuTech Global,2026-11,2,20.4,0,14,14.0,20.4,21,6100,128100,10,-1.0,즉시발주(Past Due),2
+PRT-DVP,Dry Vacuum Pump,VacuTech Global,2026-12,3,22.6,0,14,14.0,22.6,23,6100,140300,10,0.0,2026-09,2
+PRT-DVP,Dry Vacuum Pump,VacuTech Global,2027-01,4,21.2,0,14,14.0,21.2,22,6100,134200,10,1.0,2026-10,2
+PRT-DVP,Dry Vacuum Pump,VacuTech Global,2027-02,5,21.1,0,14,14.0,21.1,22,6100,134200,10,2.0,2026-11,2
+PRT-EEF,Robot Arm End Effector,PrecisionMotion,2026-09,0,41.2,0,20,24.8,0.0,0,2200,0,5,,-,4
+PRT-EEF,Robot Arm End Effector,PrecisionMotion,2026-10,1,39.8,0,20,20.0,35.0,35,2200,77000,5,-1.0,즉시발주(Past Due),4
+PRT-EEF,Robot Arm End Effector,PrecisionMotion,2026-11,2,40.8,0,20,20.0,40.8,41,2200,90200,5,0.0,2026-09,4
+PRT-EEF,Robot Arm End Effector,PrecisionMotion,2026-12,3,45.2,0,20,20.0,45.2,46,2200,101200,5,1.0,2026-10,4
+PRT-EEF,Robot Arm End Effector,PrecisionMotion,2027-01,4,42.4,0,20,20.0,42.4,43,2200,94600,5,2.0,2026-11,4
+PRT-EEF,Robot Arm End Effector,PrecisionMotion,2027-02,5,42.2,0,20,20.0,42.2,43,2200,94600,5,3.0,2026-12,4
+PRT-ESC,Ceramic Electrostatic Chuck,CeramTech Korea,2026-09,0,20.6,1,12,16.4,0.0,0,8200,0,10,,-,2
+PRT-ESC,Ceramic Electrostatic Chuck,CeramTech Korea,2026-10,1,19.9,0,12,12.0,15.5,16,8200,131200,10,-2.0,즉시발주(Past Due),2
+PRT-ESC,Ceramic Electrostatic Chuck,CeramTech Korea,2026-11,2,20.4,0,12,12.0,20.4,21,8200,172200,10,-1.0,즉시발주(Past Due),2
+PRT-ESC,Ceramic Electrostatic Chuck,CeramTech Korea,2026-12,3,22.6,0,12,12.0,22.6,23,8200,188600,10,0.0,2026-09,2
+PRT-ESC,Ceramic Electrostatic Chuck,CeramTech Korea,2027-01,4,21.2,0,12,12.0,21.2,22,8200,180400,10,1.0,2026-10,2
+PRT-ESC,Ceramic Electrostatic Chuck,CeramTech Korea,2027-02,5,21.1,0,12,12.0,21.1,22,8200,180400,10,2.0,2026-11,2
+PRT-FRS,Focus Ring Set,SiQuartz Industries,2026-09,0,41.2,0,25,28.8,0.0,0,950,0,4,,-,10
+PRT-FRS,Focus Ring Set,SiQuartz Industries,2026-10,1,39.8,0,25,25.0,36.0,36,950,34200,4,0.0,2026-09,10
+PRT-FRS,Focus Ring Set,SiQuartz Industries,2026-11,2,40.8,0,25,25.0,40.8,41,950,38950,4,1.0,2026-10,10
+PRT-FRS,Focus Ring Set,SiQuartz Industries,2026-12,3,45.2,0,25,25.0,45.2,46,950,43700,4,2.0,2026-11,10
+PRT-FRS,Focus Ring Set,SiQuartz Industries,2027-01,4,42.4,0,25,25.0,42.4,43,950,40850,4,3.0,2026-12,10
+PRT-FRS,Focus Ring Set,SiQuartz Industries,2027-02,5,42.2,0,25,25.0,42.2,43,950,40850,4,4.0,2027-01,10
+PRT-GVM,Gas Valve Manifold,FlowMaster Inc.,2026-09,0,41.2,0,19,22.8,0.0,0,1450,0,6,,-,4
+PRT-GVM,Gas Valve Manifold,FlowMaster Inc.,2026-10,1,39.8,0,19,19.0,36.0,36,1450,52200,6,-1.0,즉시발주(Past Due),4
+PRT-GVM,Gas Valve Manifold,FlowMaster Inc.,2026-11,2,40.8,0,19,19.0,40.8,41,1450,59450,6,0.0,2026-09,4
+PRT-GVM,Gas Valve Manifold,FlowMaster Inc.,2026-12,3,45.2,0,19,19.0,45.2,46,1450,66700,6,1.0,2026-10,4
+PRT-GVM,Gas Valve Manifold,FlowMaster Inc.,2027-01,4,42.4,0,19,19.0,42.4,43,1450,62350,6,2.0,2026-11,4
+PRT-GVM,Gas Valve Manifold,FlowMaster Inc.,2027-02,5,42.2,0,19,19.0,42.2,43,1450,62350,6,3.0,2026-12,4
+PRT-LNR,Quartz Chamber Liner,SiQuartz Industries,2026-09,0,20.6,0,9,11.4,0.0,0,3100,0,6,,-,4
+PRT-LNR,Quartz Chamber Liner,SiQuartz Industries,2026-10,1,19.9,0,9,9.0,17.5,18,3100,55800,6,-1.0,즉시발주(Past Due),4
+PRT-LNR,Quartz Chamber Liner,SiQuartz Industries,2026-11,2,20.4,0,9,9.0,20.4,21,3100,65100,6,0.0,2026-09,4
+PRT-LNR,Quartz Chamber Liner,SiQuartz Industries,2026-12,3,22.6,0,9,9.0,22.6,23,3100,71300,6,1.0,2026-10,4
+PRT-LNR,Quartz Chamber Liner,SiQuartz Industries,2027-01,4,21.2,0,9,9.0,21.2,22,3100,68200,6,2.0,2026-11,4
+PRT-LNR,Quartz Chamber Liner,SiQuartz Industries,2027-02,5,21.1,0,9,9.0,21.1,22,3100,68200,6,3.0,2026-12,4
+PRT-MFC,Mass Flow Controller,FlowMaster Inc.,2026-09,0,123.6,0,54,66.4,0.0,0,2650,0,7,,-,6
+PRT-MFC,Mass Flow Controller,FlowMaster Inc.,2026-10,1,119.4,0,54,54.0,107.0,107,2650,283550,7,-1.0,즉시발주(Past Due),6
+PRT-MFC,Mass Flow Controller,FlowMaster Inc.,2026-11,2,122.4,0,54,54.0,122.4,123,2650,325950,7,0.0,2026-09,6
+PRT-MFC,Mass Flow Controller,FlowMaster Inc.,2026-12,3,135.6,0,54,54.0,135.6,136,2650,360400,7,1.0,2026-10,6
+PRT-MFC,Mass Flow Controller,FlowMaster Inc.,2027-01,4,127.2,0,54,54.0,127.2,128,2650,339200,7,2.0,2026-11,6
+PRT-MFC,Mass Flow Controller,FlowMaster Inc.,2027-02,5,126.6,0,54,54.0,126.6,127,2650,336550,7,3.0,2026-12,6
+PRT-PTR,Pressure Transducer,SensorTek,2026-09,0,41.2,0,13,16.8,0.0,0,520,0,4,,-,8
+PRT-PTR,Pressure Transducer,SensorTek,2026-10,1,39.8,0,13,13.0,36.0,36,520,18720,4,0.0,2026-09,8
+PRT-PTR,Pressure Transducer,SensorTek,2026-11,2,40.8,0,13,13.0,40.8,41,520,21320,4,1.0,2026-10,8
+PRT-PTR,Pressure Transducer,SensorTek,2026-12,3,45.2,0,13,13.0,45.2,46,520,23920,4,2.0,2026-11,8
+PRT-PTR,Pressure Transducer,SensorTek,2027-01,4,42.4,0,13,13.0,42.4,43,520,22360,4,3.0,2026-12,8
+PRT-PTR,Pressure Transducer,SensorTek,2027-02,5,42.2,0,13,13.0,42.2,43,520,22360,4,4.0,2027-01,8
+PRT-RFA,RF Power Amplifier Module,RF Dynamics,2026-09,0,41.2,1,31,31.0,41.2,42,11200,470400,12,-3.0,즉시발주(Past Due),2
+PRT-RFA,RF Power Amplifier Module,RF Dynamics,2026-10,1,39.8,0,31,31.0,39.8,40,11200,448000,12,-2.0,즉시발주(Past Due),2
+PRT-RFA,RF Power Amplifier Module,RF Dynamics,2026-11,2,40.8,0,31,31.0,40.8,41,11200,459200,12,-1.0,즉시발주(Past Due),2
+PRT-RFA,RF Power Amplifier Module,RF Dynamics,2026-12,3,45.2,0,31,31.0,45.2,46,11200,515200,12,0.0,2026-09,2
+PRT-RFA,RF Power Amplifier Module,RF Dynamics,2027-01,4,42.4,0,31,31.0,42.4,43,11200,481600,12,1.0,2026-10,2
+PRT-RFA,RF Power Amplifier Module,RF Dynamics,2027-02,5,42.2,0,31,31.0,42.2,43,11200,481600,12,2.0,2026-11,2
+PRT-RFM,RF Matching Network,RF Dynamics,2026-09,0,41.2,0,23,28.8,0.0,0,6400,0,8,,-,2
+PRT-RFM,RF Matching Network,RF Dynamics,2026-10,1,39.8,0,23,23.0,34.0,34,6400,217600,8,-1.0,즉시발주(Past Due),2
+PRT-RFM,RF Matching Network,RF Dynamics,2026-11,2,40.8,0,23,23.0,40.8,41,6400,262400,8,0.0,2026-09,2
+PRT-RFM,RF Matching Network,RF Dynamics,2026-12,3,45.2,0,23,23.0,45.2,46,6400,294400,8,1.0,2026-10,2
+PRT-RFM,RF Matching Network,RF Dynamics,2027-01,4,42.4,0,23,23.0,42.4,43,6400,275200,8,2.0,2026-11,2
+PRT-RFM,RF Matching Network,RF Dynamics,2027-02,5,42.2,0,23,23.0,42.2,43,6400,275200,8,3.0,2026-12,2
+PRT-RFS,RF Sensor/Coupler,SensorTek,2026-09,0,82.4,0,33,39.6,0.0,0,780,0,5,,-,5
+PRT-RFS,RF Sensor/Coupler,SensorTek,2026-10,1,79.6,0,33,33.0,73.0,73,780,56940,5,-1.0,즉시발주(Past Due),5
+PRT-RFS,RF Sensor/Coupler,SensorTek,2026-11,2,81.6,0,33,33.0,81.6,82,780,63960,5,0.0,2026-09,5
+PRT-RFS,RF Sensor/Coupler,SensorTek,2026-12,3,90.4,0,33,33.0,90.4,91,780,70980,5,1.0,2026-10,5
+PRT-RFS,RF Sensor/Coupler,SensorTek,2027-01,4,84.8,0,33,33.0,84.8,85,780,66300,5,2.0,2026-11,5
+PRT-RFS,RF Sensor/Coupler,SensorTek,2027-02,5,84.4,0,33,33.0,84.4,85,780,66300,5,3.0,2026-12,5
+PRT-SVM,Servo Motor Actuator,PrecisionMotion,2026-09,0,61.8,0,30,34.2,0.0,0,1850,0,6,,-,6
+PRT-SVM,Servo Motor Actuator,PrecisionMotion,2026-10,1,59.7,0,30,30.0,55.5,56,1850,103600,6,-1.0,즉시발주(Past Due),6
+PRT-SVM,Servo Motor Actuator,PrecisionMotion,2026-11,2,61.2,0,30,30.0,61.2,62,1850,114700,6,0.0,2026-09,6
+PRT-SVM,Servo Motor Actuator,PrecisionMotion,2026-12,3,67.8,0,30,30.0,67.8,68,1850,125800,6,1.0,2026-10,6
+PRT-SVM,Servo Motor Actuator,PrecisionMotion,2027-01,4,63.6,0,30,30.0,63.6,64,1850,118400,6,2.0,2026-11,6
+PRT-SVM,Servo Motor Actuator,PrecisionMotion,2027-02,5,63.3,0,30,30.0,63.3,64,1850,118400,6,3.0,2026-12,6
+PRT-TMP,Turbo Molecular Pump,VacuTech Global,2026-09,0,20.6,1,19,19.0,18.6,19,9800,186200,14,-4.0,즉시발주(Past Due),2
+PRT-TMP,Turbo Molecular Pump,VacuTech Global,2026-10,1,19.9,0,19,19.0,19.9,20,9800,196000,14,-3.0,즉시발주(Past Due),2
+PRT-TMP,Turbo Molecular Pump,VacuTech Global,2026-11,2,20.4,0,19,19.0,20.4,21,9800,205800,14,-2.0,즉시발주(Past Due),2
+PRT-TMP,Turbo Molecular Pump,VacuTech Global,2026-12,3,22.6,0,19,19.0,22.6,23,9800,225400,14,-1.0,즉시발주(Past Due),2
+PRT-TMP,Turbo Molecular Pump,VacuTech Global,2027-01,4,21.2,0,19,19.0,21.2,22,9800,215600,14,0.0,2026-09,2
+PRT-TMP,Turbo Molecular Pump,VacuTech Global,2027-02,5,21.1,0,19,19.0,21.1,22,9800,215600,14,1.0,2026-10,2
+PRT-VPW,Viewport Window,OptiGlass Co.,2026-09,0,41.2,0,11,14.8,0.0,0,410,0,3,,-,10
+PRT-VPW,Viewport Window,OptiGlass Co.,2026-10,1,39.8,0,11,11.0,36.0,36,410,14760,3,0.0,2026-09,10
+PRT-VPW,Viewport Window,OptiGlass Co.,2026-11,2,40.8,0,11,11.0,40.8,41,410,16810,3,1.0,2026-10,10
+PRT-VPW,Viewport Window,OptiGlass Co.,2026-12,3,45.2,0,11,11.0,45.2,46,410,18860,3,2.0,2026-11,10
+PRT-VPW,Viewport Window,OptiGlass Co.,2027-01,4,42.4,0,11,11.0,42.4,43,410,17630,3,3.0,2026-12,10
+PRT-VPW,Viewport Window,OptiGlass Co.,2027-02,5,42.2,0,11,11.0,42.2,43,410,17630,3,4.0,2027-01,10
+PRT-WPS,Wafer Position Sensor,SensorTek,2026-09,0,82.4,0,25,31.6,0.0,0,340,0,3,,-,10
+PRT-WPS,Wafer Position Sensor,SensorTek,2026-10,1,79.6,0,25,25.0,73.0,73,340,24820,3,0.0,2026-09,10
+PRT-WPS,Wafer Position Sensor,SensorTek,2026-11,2,81.6,0,25,25.0,81.6,82,340,27880,3,1.0,2026-10,10
+PRT-WPS,Wafer Position Sensor,SensorTek,2026-12,3,90.4,0,25,25.0,90.4,91,340,30940,3,2.0,2026-11,10
+PRT-WPS,Wafer Position Sensor,SensorTek,2027-01,4,84.8,0,25,25.0,84.8,85,340,28900,3,3.0,2026-12,10
+PRT-WPS,Wafer Position Sensor,SensorTek,2027-02,5,84.4,0,25,25.0,84.4,85,340,28900,3,4.0,2027-01,10

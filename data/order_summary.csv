@@ -1,0 +1,18 @@
+part_id,part_name,supplier,lead_time_weeks,moq,total_order_qty,total_order_value,first_release
+PRT-RFA,RF Power Amplifier Module,RF Dynamics,12,2,255,2856000,-3.0
+PRT-MFC,Mass Flow Controller,FlowMaster Inc.,7,6,621,1645650,-1.0
+PRT-RFM,RF Matching Network,RF Dynamics,8,2,207,1324800,-1.0
+PRT-TMP,Turbo Molecular Pump,VacuTech Global,14,2,127,1244600,-4.0
+PRT-ESC,Ceramic Electrostatic Chuck,CeramTech Korea,10,2,104,852800,-2.0
+PRT-DVP,Dry Vacuum Pump,VacuTech Global,10,2,105,640500,-2.0
+PRT-SVM,Servo Motor Actuator,PrecisionMotion,6,6,314,580900,-1.0
+PRT-EEF,Robot Arm End Effector,PrecisionMotion,5,4,208,457600,-1.0
+PRT-CCU,Chiller Compressor Unit,ThermoChill Systems,9,2,106,455800,-2.0
+PRT-LNR,Quartz Chamber Liner,SiQuartz Industries,6,4,106,328600,-1.0
+PRT-RFS,RF Sensor/Coupler,SensorTek,5,5,416,324480,-1.0
+PRT-GVM,Gas Valve Manifold,FlowMaster Inc.,6,4,209,303050,-1.0
+PRT-FRS,Focus Ring Set,SiQuartz Industries,4,10,209,198550,0.0
+PRT-WPS,Wafer Position Sensor,SensorTek,3,10,416,141440,0.0
+PRT-PTR,Pressure Transducer,SensorTek,4,8,209,108680,0.0
+PRT-VPW,Viewport Window,OptiGlass Co.,3,10,209,85690,0.0
+PRT-CFS,Coolant Flow Sensor,ThermoChill Systems,3,10,208,60320,0.0

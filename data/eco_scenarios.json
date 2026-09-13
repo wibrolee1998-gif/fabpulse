@@ -1,0 +1,287 @@
+[
+  {
+    "eco_id": "ECO-2027-001",
+    "part_id": "PRT-TMP",
+    "part_name": "Turbo Molecular Pump",
+    "supplier": "VacuTech Global",
+    "trigger": "공급업체 EOL(단종) 공지 — VacuTech Global, 구형 라인업 단종 예정",
+    "where_used": {
+      "part_id": "PRT-TMP",
+      "subsystem_id": "SUB-CVM",
+      "subsystem_name": "Chiller & Vacuum Module",
+      "qty_per_subsystem": 1,
+      "product_id": "PE-3000",
+      "product_name": "Plasma Etcher PE-3000",
+      "qty_per_product": 1
+    },
+    "baseline": {
+      "unit_cost": 9800.0,
+      "lead_time_weeks": 14.0,
+      "is_past_due": true,
+      "months_overdue": 4,
+      "first_release_period": "즉시발주(Past Due)",
+      "safety_stock": 19,
+      "order_qty": 19,
+      "order_value": 186200.0,
+      "six_month_total_order_value": 1244600.0
+    },
+    "substitutes": [
+      {
+        "alt_id": "TMP-ALT-A",
+        "alt_name": "VacuTech TMP-950X (동일 공급업체 후속모델)",
+        "grade": "A",
+        "grade_desc": "Drop-in A · Form/Fit/Function 동일 — 재인증 없이 즉시 대체 가능",
+        "cost_delta_pct": 4,
+        "note": "동일 풋프린트·인터페이스, 성능 스펙 동일. 후속모델로 사실상 자동 승계",
+        "result": {
+          "unit_cost": 10192.0,
+          "lead_time_weeks": 11,
+          "is_past_due": true,
+          "months_overdue": 3,
+          "first_release_period": "즉시발주(Past Due)",
+          "safety_stock": 17,
+          "order_qty": 17,
+          "order_value": 173264.0,
+          "six_month_total_order_value": 1274000.0,
+          "safety_stock_delta": -2,
+          "months_overdue_delta": -1,
+          "six_month_value_delta": 29400.0
+        }
+      },
+      {
+        "alt_id": "TMP-ALT-B",
+        "alt_name": "Ebara ET-1200",
+        "grade": "B",
+        "grade_desc": "Drop-in B · 경미한 차이 — 보정/조정 등 축소 검토 필요",
+        "cost_delta_pct": -8,
+        "note": "장착 브라켓 경미 수정 + 진동 스펙 재검토 필요",
+        "result": {
+          "unit_cost": 9016.0,
+          "lead_time_weeks": 9,
+          "is_past_due": true,
+          "months_overdue": 3,
+          "first_release_period": "즉시발주(Past Due)",
+          "safety_stock": 15,
+          "order_qty": 15,
+          "order_value": 135240.0,
+          "six_month_total_order_value": 1108968.0,
+          "safety_stock_delta": -4,
+          "months_overdue_delta": -1,
+          "six_month_value_delta": -135632.0
+        }
+      },
+      {
+        "alt_id": "TMP-ALT-C",
+        "alt_name": "Pfeiffer HiPace 2300",
+        "grade": "C",
+        "grade_desc": "Drop-in C · 주요 사양 상이 — 전체 재인증(requalification) 필요",
+        "cost_delta_pct": -15,
+        "note": "제어 인터페이스(통신 프로토콜) 상이 — 펌웨어 통합 + 전체 재인증 필요",
+        "result": {
+          "unit_cost": 8330.0,
+          "lead_time_weeks": 16,
+          "is_past_due": true,
+          "months_overdue": 4,
+          "first_release_period": "즉시발주(Past Due)",
+          "safety_stock": 20,
+          "order_qty": 20,
+          "order_value": 166600.0,
+          "six_month_total_order_value": 1066240.0,
+          "safety_stock_delta": 1,
+          "months_overdue_delta": 0,
+          "six_month_value_delta": -178360.0
+        }
+      }
+    ]
+  },
+  {
+    "eco_id": "ECO-2027-002",
+    "part_id": "PRT-RFA",
+    "part_name": "RF Power Amplifier Module",
+    "supplier": "RF Dynamics",
+    "trigger": "핵심 GaN 트랜지스터 단종에 따른 부품 EOL",
+    "where_used": {
+      "part_id": "PRT-RFA",
+      "subsystem_id": "SUB-RFG",
+      "subsystem_name": "RF Generator Assembly",
+      "qty_per_subsystem": 1,
+      "product_id": "PE-3000",
+      "product_name": "Plasma Etcher PE-3000",
+      "qty_per_product": 2
+    },
+    "baseline": {
+      "unit_cost": 11200.0,
+      "lead_time_weeks": 12.0,
+      "is_past_due": true,
+      "months_overdue": 3,
+      "first_release_period": "즉시발주(Past Due)",
+      "safety_stock": 31,
+      "order_qty": 42,
+      "order_value": 470400.0,
+      "six_month_total_order_value": 2856000.0
+    },
+    "substitutes": [
+      {
+        "alt_id": "RFA-ALT-A",
+        "alt_name": "RF Dynamics RFA-500N (개정판, 동일 공급업체)",
+        "grade": "A",
+        "grade_desc": "Drop-in A · Form/Fit/Function 동일 — 재인증 없이 즉시 대체 가능",
+        "cost_delta_pct": 2,
+        "note": "동일 공급업체가 대체 트랜지스터로 개정, 출력 스펙 동일",
+        "result": {
+          "unit_cost": 11424.0,
+          "lead_time_weeks": 12,
+          "is_past_due": true,
+          "months_overdue": 3,
+          "first_release_period": "즉시발주(Past Due)",
+          "safety_stock": 31,
+          "order_qty": 42,
+          "order_value": 479808.0,
+          "six_month_total_order_value": 2913120.0,
+          "safety_stock_delta": 0,
+          "months_overdue_delta": 0,
+          "six_month_value_delta": 57120.0
+        }
+      },
+      {
+        "alt_id": "RFA-ALT-B",
+        "alt_name": "Advanced RF Systems ARF-9000",
+        "grade": "B",
+        "grade_desc": "Drop-in B · 경미한 차이 — 보정/조정 등 축소 검토 필요",
+        "cost_delta_pct": -5,
+        "note": "출력 보정(calibration) 절차 추가 필요",
+        "result": {
+          "unit_cost": 10640.0,
+          "lead_time_weeks": 10,
+          "is_past_due": true,
+          "months_overdue": 3,
+          "first_release_period": "즉시발주(Past Due)",
+          "safety_stock": 29,
+          "order_qty": 40,
+          "order_value": 425600.0,
+          "six_month_total_order_value": 2691920.0,
+          "safety_stock_delta": -2,
+          "months_overdue_delta": 0,
+          "six_month_value_delta": -164080.0
+        }
+      },
+      {
+        "alt_id": "RFA-ALT-C",
+        "alt_name": "MKS Instruments RFPA-X",
+        "grade": "C",
+        "grade_desc": "Drop-in C · 주요 사양 상이 — 전체 재인증(requalification) 필요",
+        "cost_delta_pct": -12,
+        "note": "폼팩터 상이 — 섀시 설계 변경 + 전체 재인증 필요",
+        "result": {
+          "unit_cost": 9856.0,
+          "lead_time_weeks": 18,
+          "is_past_due": true,
+          "months_overdue": 5,
+          "first_release_period": "즉시발주(Past Due)",
+          "safety_stock": 38,
+          "order_qty": 49,
+          "order_value": 482944.0,
+          "six_month_total_order_value": 2582272.0,
+          "safety_stock_delta": 7,
+          "months_overdue_delta": 2,
+          "six_month_value_delta": -273728.0
+        }
+      }
+    ]
+  },
+  {
+    "eco_id": "ECO-2027-003",
+    "part_id": "PRT-ESC",
+    "part_name": "Ceramic Electrostatic Chuck",
+    "supplier": "CeramTech Korea",
+    "trigger": "환경규제(RoHS) 대응 — 기존 세라믹 소재 특정물질 사용 제한",
+    "where_used": {
+      "part_id": "PRT-ESC",
+      "subsystem_id": "SUB-PCM",
+      "subsystem_name": "Process Chamber Module",
+      "qty_per_subsystem": 1,
+      "product_id": "PE-3000",
+      "product_name": "Plasma Etcher PE-3000",
+      "qty_per_product": 1
+    },
+    "baseline": {
+      "unit_cost": 8200.0,
+      "lead_time_weeks": 10.0,
+      "is_past_due": true,
+      "months_overdue": 2,
+      "first_release_period": "즉시발주(Past Due)",
+      "safety_stock": 12,
+      "order_qty": 16,
+      "order_value": 131200.0,
+      "six_month_total_order_value": 852800.0
+    },
+    "substitutes": [
+      {
+        "alt_id": "ESC-ALT-A",
+        "alt_name": "CeramTech Korea ESC-2 (RoHS 대응, 동일 공급업체)",
+        "grade": "A",
+        "grade_desc": "Drop-in A · Form/Fit/Function 동일 — 재인증 없이 즉시 대체 가능",
+        "cost_delta_pct": 6,
+        "note": "동일 공급업체의 RoHS 대응 버전, 클램핑 스펙 동일",
+        "result": {
+          "unit_cost": 8692.0,
+          "lead_time_weeks": 10,
+          "is_past_due": true,
+          "months_overdue": 2,
+          "first_release_period": "즉시발주(Past Due)",
+          "safety_stock": 12,
+          "order_qty": 16,
+          "order_value": 139072.0,
+          "six_month_total_order_value": 903968.0,
+          "safety_stock_delta": 0,
+          "months_overdue_delta": 0,
+          "six_month_value_delta": 51168.0
+        }
+      },
+      {
+        "alt_id": "ESC-ALT-B",
+        "alt_name": "NGK ESC Advanced",
+        "grade": "B",
+        "grade_desc": "Drop-in B · 경미한 차이 — 보정/조정 등 축소 검토 필요",
+        "cost_delta_pct": -3,
+        "note": "클램핑 전압 재보정(recalibration) 필요",
+        "result": {
+          "unit_cost": 7954.0,
+          "lead_time_weeks": 9,
+          "is_past_due": true,
+          "months_overdue": 2,
+          "first_release_period": "즉시발주(Past Due)",
+          "safety_stock": 12,
+          "order_qty": 16,
+          "order_value": 127264.0,
+          "six_month_total_order_value": 827216.0,
+          "safety_stock_delta": 0,
+          "months_overdue_delta": 0,
+          "six_month_value_delta": -25584.0
+        }
+      },
+      {
+        "alt_id": "ESC-ALT-C",
+        "alt_name": "Kyocera ESC-Pro",
+        "grade": "C",
+        "grade_desc": "Drop-in C · 주요 사양 상이 — 전체 재인증(requalification) 필요",
+        "cost_delta_pct": 15,
+        "note": "세라믹 조성 상이 — 공정 전체 재인증 필요",
+        "result": {
+          "unit_cost": 9430.0,
+          "lead_time_weeks": 13,
+          "is_past_due": true,
+          "months_overdue": 2,
+          "first_release_period": "즉시발주(Past Due)",
+          "safety_stock": 14,
+          "order_qty": 18,
+          "order_value": 169740.0,
+          "six_month_total_order_value": 999580.0,
+          "safety_stock_delta": 2,
+          "months_overdue_delta": 0,
+          "six_month_value_delta": 146780.0
+        }
+      }
+    ]
+  }
+]
